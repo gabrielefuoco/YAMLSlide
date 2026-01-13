@@ -1,0 +1,8 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+{% for slide in slides %}
+{% set outer_loop = loop %}
+{% include 'templates/slides/' ~ slide.type ~ '.html' ignore missing %}
+{% endfor %}
+{% endblock %}

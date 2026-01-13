@@ -1,8 +1,7 @@
-# presentation-template Specification
+# presentation-template Specification Delta
 
-## Purpose
-TBD - created by archiving change implement-presentation-generator. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Jinja2 Template Integration
 
 The `templates/` directory SHALL contain a modular Jinja2 template system.

@@ -3,1221 +3,643 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titolo Pagina Browser</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YAMLSlide: Il Grande Stress Test Visivo</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+<!-- Fonts -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
-    <script>
-        // Inizializzazione post-caricamento
-        document.addEventListener('DOMContentLoaded', function () {
-            if (typeof hljs !== 'undefined') hljs.highlightAll();
-            if (typeof mermaid !== 'undefined') {
-                mermaid.initialize({ startOnLoad: true, theme: 'dark' });
-            }
-        });
-    </script>
+<!-- Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet">
 
-    <style>
-        :root {
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 
-            /* Palette Dinamica dal YAML */
-            --bg-primary: {
-                    {
-                    theme.bg_primary
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    bg: {
+                        primary: '#020617',
+                        secondary: '#f8fafc',
+                    },
+                    accent: {
+                        primary: '#22d3ee',
+                        secondary: '#f472b6',
+                        tertiary: '#a855f7',
+                    },
+                    text: {
+                        primary: '#f8fafc',
+                        secondary: '#94a3b8',
+                    },
+                    card: {
+                        bg: 'rgba(255, 255, 255, 0.9)',
+                        border: 'rgba(21, 128, 61, 0.2)',
+                    }
+                },
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    mono: ['JetBrains Mono', 'monospace'],
+                },
+                backdropBlur: {
+                    glass: '20px',
                 }
             }
-
-            ;
-            --bg-secondary: #f8fafc;
-
-            --accent-primary: {
-                    {
-                    theme.accent_primary
-                }
-            }
-
-            ;
-
-            --accent-secondary: {
-                    {
-                    theme.accent_secondary
-                }
-            }
-
-            ;
-
-            --accent-tertiary: {
-                    {
-                    theme.accent_tertiary
-                }
-            }
-
-            ;
-
-            --text-primary: {
-                    {
-                    theme.text_primary
-                }
-            }
-
-            ;
-
-            --text-secondary: {
-                    {
-                    theme.text_secondary
-                }
-            }
-
-            ;
-
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-border: rgba(21, 128, 61, 0.2);
-            --glass-blur: 20px;
         }
+    }
+</script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof hljs !== 'undefined') hljs.highlightAll();
+        if (typeof mermaid !== 'undefined') {
+            mermaid.initialize({ startOnLoad: true, theme: 'dark' });
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: transparent;
-            /* Permette di vedere background-fx */
-            overflow: hidden;
-            color: var(--text-primary);
-            line-height: 1.6;
-            height: 100vh;
-            width: 100vw;
+    });
+</script>
+    <style type="text/tailwindcss">
+    @layer utilities {
+        /* Glass Card Effect */
+        .glass-card {
+            @apply bg-white/90 backdrop-blur-[20px] rounded-xl border border-card-border shadow-lg;
         }
-
-        /* Sfondo astratto migliorato */
-        .background-fx {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-
-                {
-                % set bg=theme.get('background', {}) %
+        
+        /* Gradient Text */
+        .text-gradient {
+            @apply bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-slate-900;
         }
-
-            {
-            % set bg_type=bg.get('type', 'abstract') %
-        }
-
-            {
-            # Resolver function simulation in Jinja2 #
-        }
-
-            {
-            % macro resolve_color(color_val) -%
-        }
-
-            {
-            % if theme.get(color_val) -%
-        }
-
-            {
-                {
-                theme.get(color_val)
-            }
-        }
-
-            {
-            %- else -%
-        }
-
-            {
-                {
-                color_val
-            }
-        }
-
-            {
-            %- endif %
-        }
-
-            {
-            %- endmacro %
-        }
-
-        background-color: {
-                {
-                resolve_color(bg.get('base_color', theme.bg_primary))
-            }
-        }
-
-        ;
-
-            {
-            % if bg_type=='solid' %
-        }
-
-        background-image: none;
-
-            {
-            % elif bg_type=='gradient' and bg.linear_gradient %
-        }
-
-        background-image: linear-gradient({
-                {
-                bg.linear_gradient.angle
-            }
-        }
-
-        ,
-        {
-        % for stop in bg.linear_gradient.stops %
-        }
-
-            {
-                {
-                resolve_color(stop.color)
-            }
-        }
-
-            {
-                {
-                stop.pos
-            }
-        }
-
-            {
-            % if not loop.last %
-        }
-
-        , {
-        % endif %
-        }
-
-            {
-            % endfor %
-        });
-
-            {
-            % else %
-        }
-
-            {
-            # Default 'abstract' or customized 'abstract' #
-        }
-
-        background-image: {
-            % if bg.radial_layers %
-        }
-
-            {
-            % for layer in bg.radial_layers %
-        }
-
-        radial-gradient(at {
-                    {
-                    layer.at
-                }
-            }
-
-            ,
-            {
-            %- set col=resolve_color(layer.color) -%
-        }
-
-            {
-            # Check if hex and add alpha #
-        }
-
-            {
-            %- if col.startswith ('#') and col|length==7 -%
-        }
-
-        rgba({
-                {
-                col[1:3]|int(0, 16)
-            }
-        }
-
-        , {
-            {
-            col[3:5]|int(0, 16)
-        }
-        }
-
-        , {
-            {
-            col[5:7]|int(0, 16)
-        }
-        }
-
-        , {
-            {
-            layer.opacity
-        }
-
-        }) {
-            %- else -%
-        }
-
-            {
-                {
-                col
-            }
-        }
-
-            {
-            %- endif %
-        }
-
-        0px, transparent {
-                {
-                layer.size
-            }
-
-        }),
-        {
-        % endfor %
-        }
-
-            {
-            % else %
-        }
-
-        radial-gradient(at 15% 25%, rgba(22, 163, 74, 0.12) 0px, transparent 55%),
-        radial-gradient(at 85% 75%, rgba(13, 148, 136, 0.12) 0px, transparent 55%),
-        radial-gradient(at 50% 50%, rgba(22, 163, 74, 0.05) 0px, transparent 60%),
-        radial-gradient(at 30% 80%, rgba(13, 148, 136, 0.05) 0px, transparent 45%),
-        {
-        % endif %
-        }
-
-            {
-            % if bg.linear_gradient %
-        }
-
-        linear-gradient({
-                {
-                bg.linear_gradient.angle
-            }
-        }
-
-        ,
-        {
-        % for stop in bg.linear_gradient.stops %
-        }
-
-            {
-                {
-                resolve_color(stop.color)
-            }
-        }
-
-            {
-                {
-                stop.pos
-            }
-        }
-
-            {
-            % if not loop.last %
-        }
-
-        , {
-        % endif %
-        }
-
-            {
-            % endfor %
-
-        }) {
-            % else %
-        }
-
-        linear-gradient(135deg, #ffffff 0%, #f7fdf9 50%, #ecfdf5 100%) {
-            % endif %
-        }
-
-        ;
-
-            {
-            % endif %
-        }
-        }
-
-        .presentation {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
+        
+        /* Slide Base */
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 60px 100px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            transform: translateY(20px);
-            display: flex;
-            flex-direction: column;
+            @apply absolute inset-0 p-[60px_100px] opacity-0 invisible transition-all duration-500 ease-out translate-y-5 flex flex-col;
         }
-
+        
         .slide.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            z-index: 10;
+            @apply opacity-100 visible translate-y-0 z-10;
         }
-
-        /* Typography & Components */
-        h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--accent-primary);
-            /* Fallback */
-            background: linear-gradient(135deg, var(--accent-primary) 0%, #020617 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 24px;
-        }
-
-        h2 {
-            font-size: 2.4rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            /* Fallback */
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.01em;
-        }
-
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-primary), transparent);
-            margin-left: 30px;
-            opacity: 0.3;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--accent-secondary);
-            font-weight: 500;
-            margin-bottom: 40px;
-            letter-spacing: 0.02em;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-
-        p,
-        li {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .lead {
-            font-size: 1.35rem;
-            color: var(--text-secondary);
-            max-width: 850px;
-            margin-bottom: 40px;
-            line-height: 1.5;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border-radius: 12px;
-            padding: 28px;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            flex: 1;
-            align-content: start;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            flex: 1;
-            align-content: start;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
-
-        li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-            font-weight: bold;
-        }
-
-        strong {
-            color: var(--accent-primary);
-            font-weight: 700;
-        }
-
-        /* Markdown Body */
-        .markdown-body h1,
-        .markdown-body h2,
-        .markdown-body h3,
-        .markdown-body h4,
-        .markdown-body h5,
-        .markdown-body h6 {
-            color: var(--text-primary);
-            margin-top: 1em;
-            margin-bottom: 0.5em;
-            line-height: 1.2;
-        }
-
-        .markdown-body h1 {
-            font-size: 2.5rem;
-        }
-
-        .markdown-body h2 {
-            font-size: 2rem;
-        }
-
-        .markdown-body h3 {
-            font-size: 1.5rem;
-        }
-
-        .markdown-body h4 {
-            font-size: 1.25rem;
-        }
-
-        .markdown-body p {
-            margin-bottom: 1em;
-        }
-
-        .markdown-body ul,
-        .markdown-body ol {
-            margin-left: 20px;
-            margin-bottom: 1em;
-        }
-
-        .markdown-body li {
-            margin-bottom: 0.5em;
-        }
-
-        .markdown-body code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85em;
-            color: #0f766e;
-            background: #ccfbf1;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #99f6e4;
-        }
-
-        .markdown-body pre {
-            background-color: #282c34;
-            padding: 1em;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1em;
-        }
-
-        .markdown-body pre code {
-            background-color: transparent;
-            color: #abb2bf;
-            padding: 0;
-            border-radius: 0;
-        }
-
-        .markdown-body blockquote {
-            border-left: 4px solid var(--accent-primary);
-            padding-left: 1em;
-            margin-left: 0;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        .markdown-body table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1em;
-        }
-
-        .markdown-body th,
-        .markdown-body td {
-            border: 1px solid var(--card-border);
-            padding: 8px;
-            text-align: left;
-        }
-
-        .markdown-body th {
-            background-color: var(--card-bg);
-            font-weight: 600;
-        }
-
-        .markdown-body a {
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
-
-        .markdown-body a:hover {
-            text-decoration: underline;
-        }
-
-        /* Mermaid Centering */
-        .mermaid {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        /* Process Steps */
-        .process-container {
-            display: flex;
-            gap: 24px;
-            margin: 30px 0;
-        }
-
-        .process-step {
-            flex: 1;
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            border-top: 4px solid var(--accent-tertiary);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
-        }
-
-        .process-step:nth-child(2) {
-            border-top-color: var(--accent-secondary);
-        }
-
-        .process-step:nth-child(3) {
-            border-top-color: var(--accent-primary);
-        }
-
-        .step-header {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            color: var(--accent-primary);
-            font-weight: 600;
-        }
-
-        /* Hero Meta */
-        .meta-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            padding-top: 40px;
-            margin-top: auto;
-        }
-
-        .student-highlight h4 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-primary);
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .student-highlight p {
-            font-size: 2.2rem;
-            color: var(--text-primary);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 5px;
-        }
-
-        .id-badge {
-            font-family: 'JetBrains Mono', monospace;
-            background: rgba(13, 148, 136, 0.1);
-            padding: 4px 12px;
-            border-radius: 6px;
-            color: var(--accent-tertiary);
-            font-weight: 600;
-        }
-
-        /* Badges */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tech-badge {
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 100px;
-            background: #ecfdf5;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Charts */
-        .chart-container {
-            position: relative;
-            height: 60vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Animations */
+        
+        /* Stagger Animations */
         .stagger-1 {
             animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            @apply opacity-0 translate-y-5;
         }
-
         .stagger-2 {
             animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            @apply opacity-0 translate-y-5;
         }
-
         .stagger-3 {
             animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            @apply opacity-0 translate-y-5;
         }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    }
+    
+    @layer components {
+        /* Process Step */
+        .process-step {
+            @apply flex-1 glass-card p-6 border-t-4 border-t-accent-tertiary;
         }
-
-        /* Utilità */
-        .highlight-box {
-            background: #f0fdf4;
-            border: 1px solid #86efac;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: auto;
+        .process-step:nth-child(2) {
+            @apply border-t-accent-secondary;
         }
-    </style>
+        .process-step:nth-child(3) {
+            @apply border-t-accent-primary;
+        }
+        
+        /* Tech Badge */
+        .tech-badge {
+            @apply text-xs px-3 py-1 rounded-full bg-emerald-50 border border-green-200 text-green-800 font-semibold tracking-wide;
+        }
+        
+        /* ID Badge */
+        .id-badge {
+            @apply font-mono bg-accent-tertiary/10 px-3 py-1 rounded-md text-accent-tertiary font-semibold;
+        }
+    }
+    
+    @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Background FX - Requires Jinja logic, kept outside @layer for simplicity with Jinja parsing */
+    .background-fx {
+        
+        
+        
+        background-color: #020617;
+        
+        
+        /* Default abstract gradient */
+        background-image: 
+            radial-gradient(at 15% 25%, rgba(22, 163, 74, 0.12) 0px, transparent 55%),
+            radial-gradient(at 85% 75%, rgba(13, 148, 136, 0.12) 0px, transparent 55%),
+            radial-gradient(at 50% 50%, rgba(22, 163, 74, 0.05) 0px, transparent 60%),
+            linear-gradient(135deg, #ffffff 0%, #f7fdf9 50%, #ecfdf5 100%);
+        
+    }
+</style>
+    
 </head>
 
-<body>
-    <div class="background-fx"></div>
-    <div class="presentation">
-
+<body class="font-sans bg-transparent overflow-hidden text-text-primary leading-relaxed h-screen w-screen">
+    <div class="background-fx fixed inset-0 -z-10"></div>
+    <div class="presentation w-full h-full relative">
         
 
-        
-        <div class="slide active">
-            <div style="margin-top: auto; margin-bottom: auto; text-align: center;" class="stagger-1">
-                <h1>Analizzatore di Opinioni<br>Politiche su Reddit</h1>
-                <div class="subtitle">Implementazione GraphRAG: Knowledge Graph + Retrieval-Augmented Generation</div>
-            </div>
-            
-            <div class="meta-grid stagger-1">
-                <div class="meta-item student-highlight">
-                    <h4>Studente</h4>
-                    <p>Fuoco Gabriele</p>
-                    
-                    <div><span class="id-badge">Matricola 252053</span></div>
-                    
-                </div>
-            </div>
-            
+
+<div class="slide active text-center justify-center">
+    <div class="mt-auto mb-auto stagger-1">
+        <h1
+            class="text-6xl font-bold leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-accent-primary to-slate-900 mb-6 font-display">
+            Stress Test: <span style='color: #22d3ee;'>Estremo</span>
+        </h1>
+        <div class="text-2xl font-medium text-accent-secondary tracking-wide mb-10">
+            Cosa vedere: Verifica il gradiente radiale negli angoli e la resa del testo Cyan.
         </div>
+    </div>
 
-        
-        
-
-        
-        <div class="slide ">
-            <h2>Abstract del Progetto</h2>
-            <div class="markdown-body lead stagger-1"><p>Sviluppo di un'architettura end-to-end per la strutturazione di discussioni politiche...</p></div>
-
-            <div class="grid-2">
-                
-                <div class="card stagger-1">
-                    <h3>🎯 Obiettivi Scientifici</h3>
-                    
-                    
-                    <ul>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p><strong>Modellazione Semantica:</strong> Mappatura esplicita delle relazioni...</p></div>
-                        </li>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p><strong>Analisi Stance:</strong> Identificazione di gruppi polarizzati...</p></div>
-                        </li>
-                        
-                    </ul>
-                    
-                </div>
-                
-                <div class="card stagger-2">
-                    <h3>🛠️ Metodologia</h3>
-                    
-                    
-                    <ul>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p><strong>NLP Contestuale:</strong> Utilizzo di LLM locali...</p></div>
-                        </li>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p><strong>Community Detection:</strong> Algoritmo di Leiden...</p></div>
-                        </li>
-                        
-                    </ul>
-                    
-                </div>
-                
-            </div>
-        </div>
-
-        
-        
-
-        
-        <div class="slide ">
-            <h2>Architettura del Sistema</h2>
-            <div class="process-container stagger-1">
-                
-                <div class="process-step">
-                    <div class="step-header">Fase 1: ETL</div>
-                    <h3>ETL Pipeline</h3>
-                    <div class="markdown-body"><p>Ingestione asincrona dei dati da Reddit...</p></div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-header">Fase 2: Analisi</div>
-                    <h3>Graph Enrichment</h3>
-                    <div class="markdown-body"><p>Applicazione di algoritmi GDS...</p></div>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-header">Fase 3: Inferenza</div>
-                    <h3>GraphRAG</h3>
-                    <div class="markdown-body"><p>Interfaccia conversazionale gestita da Agente ReAct...</p></div>
-                </div>
-                
-            </div>
-
+    
+    <div class="flex justify-center items-center text-center pt-10 mt-auto border-t border-black/10 stagger-1">
+        <div class="flex flex-col items-center">
+            <h4 class="text-lg uppercase tracking-[2px] text-accent-primary font-extrabold mb-3">
+                Versione
+            </h4>
+            <p class="text-4xl font-bold text-text-primary leading-tight mb-2">
+                9.0.MAX
+            </p>
             
-            <div class="card" style="flex: 0 0 auto; height: auto; margin-top: 10px;">
-                <h3
-                    style="font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary)">
-                    Stack Tecnologico
-                </h3>
-                <div class="tech-stack">
-                    
-                    <span class="tech-badge">Python</span>
-                    
-                    <span class="tech-badge">Neo4j</span>
-                    
-                    <span class="tech-badge">LangChain</span>
-                    
-                    <span class="tech-badge">Ollama</span>
-                    
-                </div>
+            <div class="mt-2">
+                <span class="id-badge">ULTRA-VIBRANT</span>
             </div>
             
         </div>
+    </div>
+    
+</div>
+
+
+
+
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Animazioni e Markdown
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    
+    <div class="prose prose-slate text-lg text-text-secondary max-w-4xl mb-10 stagger-1">
+        <p>COSA VEDERE: Le card devono apparire una dopo l'altra dal basso (staggering). Il testo deve essere formattato correttamente.</p>
+    </div>
+    
+
+    <div
+        class="grid grid-cols-3 gap-6 flex-1 content-start">
+        
+        
+<div
+    class="glass-card p-7 h-full flex flex-col stagger-1 hover:shadow-xl transition-shadow duration-300">
+    <h3 class="text-xl font-bold mb-3 text-text-primary">Stile Testo</h3>
+    
+    
+    <ul class="mt-auto space-y-2">
+        
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline"><p><strong>Grassetto</strong>, <em>Corsivo</em>, ~~Barrato~~</p></div>
+        </li>
+        
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline"><p><a href="https://google.com">Link Cyan</a></p></div>
+        </li>
+        
+    </ul>
+    
+</div>
 
         
         
-
+<div
+    class="glass-card p-7 h-full flex flex-col stagger-2 hover:shadow-xl transition-shadow duration-300">
+    <h3 class="text-xl font-bold mb-3 text-text-primary">Liste & Simboli</h3>
+    
+    
+    <ul class="mt-auto space-y-2">
         
-        <div class="slide ">
-            <h2>Distribuzione Sentiment</h2>
-            <div class="markdown-body lead stagger-1"><p>Analisi preliminare sui dati estratti. <strong>Dati aggiornati al 2024.</strong></p></div>
-            <div class="card chart-container stagger-2">
-                <canvas id="chart-4"></canvas>
-            </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const ctx = document.getElementById('chart-4').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: ["Positivo", "Neutro", "Negativo", "Sarcasmo"],
-                    datasets: [{
-                        label: 'Numero Commenti',
-                        data: [150, 80, 200, 45],
-                    backgroundColor: [
-                        'rgba(21, 128, 61, 0.7)',
-                        'rgba(13, 148, 136, 0.7)',
-                        'rgba(22, 163, 74, 0.7)',
-                        'rgba(2, 6, 23, 0.7)'
-                    ],
-                    borderColor: 'rgba(21, 128, 61, 1)',
-                    borderWidth: 1
-                            }]
-                        },
-                    options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-                    });
-                });
-            </script>
-        </div>
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline"><p>Entità: &trade; &copy; &reg;</p></div>
+        </li>
+        
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline"><p>Emoji: 🚀 🧬 🧪 🌌</p></div>
+        </li>
+        
+    </ul>
+    
+</div>
 
         
         
+<div
+    class="glass-card p-7 h-full flex flex-col stagger-3 hover:shadow-xl transition-shadow duration-300">
+    <h3 class="text-xl font-bold mb-3 text-text-primary">Codice Inline</h3>
+    
+    
+    <ul class="mt-auto space-y-2">
+        
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline"><p><code>const test = true;</code></p></div>
+        </li>
+        
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline"><p>Path: <code>/usr/local/bin</code></p></div>
+        </li>
+        
+    </ul>
+    
+</div>
 
         
-        <div class="slide ">
-            <h2>Pipeline di Acquisizione</h2>
-            
+    </div>
+</div>
 
-            <div class="grid-3">
-                
-                <div class="card stagger-1">
-                    <h3>📥 Extract</h3>
-                    <div class="markdown-body"><p>Acquisizione <strong>parallela</strong>.</p></div>
-                    
-                    <ul>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p>Sorgenti: <a href="https://reddit.com">Reddit</a></p></div>
-                        </li>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p>Campionamento Top 250</p></div>
-                        </li>
-                        
-                    </ul>
-                    
-                </div>
-                
-                <div class="card stagger-2">
-                    <h3>⚙️ Transform</h3>
-                    <div class="markdown-body"><p>Arricchimento <em>semantico</em>.</p></div>
-                    
-                    <ul>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p>Embedding <code>768d</code></p></div>
-                        </li>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p>Stance Detection</p></div>
-                        </li>
-                        
-                    </ul>
-                    
-                </div>
-                
-                <div class="card stagger-3">
-                    <h3>💾 Load</h3>
-                    <div class="markdown-body"><p>Modellazione a grafo.</p></div>
-                    
-                    <ul>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p>Nodi: User, Post</p></div>
-                        </li>
-                        
-                        <li>
-                            <div class="markdown-body" style="display:inline;"><p>Archi: HAS_STANCE</p></div>
-                        </li>
-                        
-                    </ul>
-                    
-                </div>
-                
-            </div>
-        </div>
 
-        
-        
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Highlighting & Overflow
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
 
-        
-        <div class="slide ">
-            <h2>Esempio Query Cypher</h2>
-            <pre class="stagger-1"><code class="language-cypher">MATCH (u:User)-[:POSTED]->(p:Post)
-WHERE p.sentiment > 0.5
-RETURN u.name, count(p) as post_count
-ORDER BY post_count DESC
-LIMIT 10
+    <pre
+        class="stagger-1 rounded-lg overflow-hidden shadow-xl"><code class="language-python"># COSA VEDERE: I colori dei commenti devono differire dai comandi. 
+# Una linea molto lunga deve attivare lo scroll o il wrapping senza rompere il layout.
+def stress_test_colors(palette):
+    for color in palette:
+        print(f"Testing hex code: {color} with a very long string that might overflow the container if not handled properly by the CSS styles...")
+    return "Success! ✅"
 </code></pre>
-        </div>
+</div>
 
-        
-        
 
-        
-        <div class="slide ">
-            <h2>Architettura Cloud</h2>
-            
-            
-            <div class="grid-2" style="align-items: center;">
-                <div style="order: 1" class="stagger-1">
-                    <div class="markdown-body"><p>Il sistema scala orizzontalmente grazie a <strong>Kubernetes</strong>.</p>
-<ul>
-<li>Pod autoscaling basato su CPU</li>
-<li>Load balancer L7 per il traffico in ingresso</li>
-</ul>
-<blockquote>
-<p>"L'architettura è stata progettata per la resilienza."</p>
-</blockquote></div>
-                </div>
-                <div style="order: 2" class="stagger-2">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080&auto=format&fit=crop"
-                        style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"
-                        alt="Slide Image">
-                </div>
-            </div>
-        </div>
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Resa dei Grafici
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
 
-        
-        
+    
+    <div class="prose prose-slate text-lg text-text-secondary max-w-4xl mb-10 stagger-1">
+        <p>COSA VEDERE: Le barre devono avere colori distinti che risaltano sullo sfondo scuro. Verifica i margini.</p>
+    </div>
+    
 
-        
-        <div class="slide ">
-            <h2>Split Layout</h2>
-            
-            
-            <div class="grid-2" style="align-items: center;">
-                <div style="order: 1" class="stagger-1">
-                    <div class="markdown-body"><h2>Caratteristiche</h2>
-<ul>
-<li><strong>Immagine a sinistra/destra</strong></li>
-<li>Testo Markdown supportato</li>
-<li><em>Design reattivo</em></li>
-</ul></div>
-                </div>
-                <div style="order: 2" class="stagger-2">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1352&q=80"
-                        style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"
-                        alt="Slide Image">
-                </div>
-            </div>
-        </div>
-
-        
-        
-
-        
-        <div class="slide ">
-            <h2>Architettura (Mermaid)</h2>
-            <div class="card stagger-1" style="display: flex; align-items: center; justify-content: center;">
-                <div class="mermaid">
-                    graph TD
-A[Client] -->|HTTP| B(Load Balancer)
-B --> C{Service}
-C -->|One| D[Server 1]
-C -->|Two| E[Server 2]
-
-                </div>
-            </div>
-        </div>
-
-        
-        
-
-        
-        <div class="slide ">
-            <h2>Formule Matematiche (KaTeX)</h2>
-            <div class="markdown-body lead stagger-1"><p>Supporto nativo per rendering LaTeX.</p></div>
-
-            <div class="grid-2">
-                
-                <div class="card stagger-1">
-                    <h3>Equazione Energia</h3>
-                    <div class="markdown-body"><p>La famosa equazione di Einstein:
-$$E = mc^2$$</p></div>
-                    
-                </div>
-                
-                <div class="card stagger-2">
-                    <h3>Identità di Eulero</h3>
-                    <div class="markdown-body"><p>La più bella formula matematica:
-$$e^{i\pi} + 1 = 0$$</p></div>
-                    
-                </div>
-                
-            </div>
-        </div>
-
-        
-        
-
-        
-        <div class="slide ">
-            <h2>Dati Finanziari (CSV)</h2>
-            <div class="markdown-body lead stagger-1"><p>Dati caricati dinamicamente da 'dati_vendite.csv'.</p></div>
-            <div class="card stagger-2">
-                <table id="table-11">
-                    <thead>
-                        <tr>
-                            
-                            <th>Mese</th>
-                            
-                            <th>Vendite</th>
-                            
-                            <th>Utile</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <tr>
-                            
-                            <td>Gennaio</td>
-                            
-                            <td>12000</td>
-                            
-                            <td>4000</td>
-                            
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>Febbraio</td>
-                            
-                            <td>15000</td>
-                            
-                            <td>5500</td>
-                            
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>Marzo</td>
-                            
-                            <td>11000</td>
-                            
-                            <td>3000</td>
-                            
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>Aprile</td>
-                            
-                            <td>18000</td>
-                            
-                            <td>7000</td>
-                            
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>Maggio</td>
-                            
-                            <td>22000</td>
-                            
-                            <td>9000</td>
-                            
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>Giugno</td>
-                            
-                            <td>25000</td>
-                            
-                            <td>10500</td>
-                            
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        new simpleDatatables.DataTable("#table-11");
-                    });
-                </script>
-            </div>
-        </div>
-
-        
-        
-
+    <div class="glass-card flex justify-center items-center h-[60vh] w-full p-4 stagger-2">
+        <canvas id="chart-4"></canvas>
     </div>
 
     <script>
-        // Script di navigazione (Standard, invariato)
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function updateSlide(newIndex) {
-            if (newIndex < 0 || newIndex >= slides.length) return;
-            slides[currentSlideIndex].classList.remove('active');
-            currentSlideIndex = newIndex;
-            slides[currentSlideIndex].classList.add('active');
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) updateSlide(currentSlideIndex + 1);
-            if (['ArrowLeft', 'PageUp'].includes(e.key)) updateSlide(currentSlideIndex - 1);
-        });
-
-        // Inizializzazione KaTeX (Fix per versione portable)
         document.addEventListener('DOMContentLoaded', function () {
-            if (typeof renderMathInElement === 'function') {
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        { left: '$$', right: '$$', display: true },
-                        { left: '$', right: '$', display: false },
-                        { left: '\\(', right: '\\)', display: false },
-                        { left: '\\[', right: '\\[', display: true }
-                    ],
-                    throwOnError: false
-                });
-            }
+            const ctx = document.getElementById('chart-4').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Neon 1", "Neon 2", "Neon 3", "Neon 4"],
+            datasets: [{
+                label: 'Valori di Test',
+                data: [450, 320, 580, 210],
+            backgroundColor: [
+                'rgba(21, 128, 61, 0.7)',
+                'rgba(13, 148, 136, 0.7)',
+                'rgba(22, 163, 74, 0.7)',
+                'rgba(2, 6, 23, 0.7)'
+            ],
+            borderColor: 'rgba(21, 128, 61, 1)',
+            borderWidth: 1
+                    }]
+                },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+            });
         });
     </script>
+</div>
+
+
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Immagine e Testo
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    
+    
+
+    <div class="grid grid-cols-2 gap-8 items-center h-full">
+        <div class="order-1 stagger-1">
+            <div class="prose prose-slate prose-lg text-text-secondary">
+                <h3>COSA VEDERE:</h3>
+<ul>
+<li>L'immagine deve riempire la metà destra della slide.</li>
+<li>Il testo a sinistra deve avere un padding adeguato.</li>
+<li>La citazione qui sotto deve avere uno stile distinto:</li>
+</ul>
+<blockquote>
+<p>"Se il design non stressa il codice, non è abbastanza audace."</p>
+</blockquote>
+            </div>
+        </div>
+        <div class="order-2 stagger-2 flex justify-center">
+            <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200&auto=format&fit=crop"
+                class="w-full rounded-xl shadow-lg object-cover max-h-[60vh] border border-black/5" alt="Slide Image">
+        </div>
+    </div>
+</div>
+
+
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Diagramma Mermaid
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    <div class="glass-card flex items-center justify-center h-full stagger-1 p-6 overflow-hidden">
+        <div class="mermaid w-full flex justify-center">
+            graph LR
+  A[Input YAML] --> B{Processore}
+  B -->|Successo| C[HTML Finale]
+  B -->|Errore| D[Log Console]
+  style A fill:#22d3ee,stroke:#fff
+  style C fill:#f472b6,stroke:#fff
+  %% COSA VEDERE: Il diagramma deve essere centrato e i nodi colorati via CSS Mermaid.
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Formule Matematiche
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    
+    <div class="prose prose-slate text-lg text-text-secondary max-w-4xl mb-10 stagger-1">
+        <p>COSA VEDERE: Le formule devono essere renderizzate in alta qualità, non come testo semplice.</p>
+    </div>
+    
+
+    <div
+        class="grid grid-cols-2 gap-6 flex-1 content-start">
+        
+        
+<div
+    class="glass-card p-7 h-full flex flex-col stagger-1 hover:shadow-xl transition-shadow duration-300">
+    <h3 class="text-xl font-bold mb-3 text-text-primary">Fisica</h3>
+    
+    <div class="prose prose-slate text-text-secondary"><p>$$ \mathcal{L} = \bar{\psi}(i\gamma^\mu D_\mu - m)\psi $$</p></div>
+    
+    
+</div>
+
+        
+        
+<div
+    class="glass-card p-7 h-full flex flex-col stagger-2 hover:shadow-xl transition-shadow duration-300">
+    <h3 class="text-xl font-bold mb-3 text-text-primary">Probabilità</h3>
+    
+    <div class="prose prose-slate text-text-secondary"><p>$$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$</p></div>
+    
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Dati da CSV Esterno
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    
+    <div class="prose prose-slate text-lg text-text-secondary max-w-4xl mb-6 stagger-1">
+        <p>COSA VEDERE: Una tabella generata dai dati di 'dati_vendite.csv'. Verifica che i bordi siano visibili.</p>
+    </div>
+    
+
+    <div class="glass-card overflow-hidden p-6 stagger-2">
+        <table id="table-8" class="w-full">
+            <thead>
+                <tr>
+                    
+                    <th>Mese</th>
+                    
+                    <th>Vendite</th>
+                    
+                    <th>Utile</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    
+                    <td>Gennaio</td>
+                    
+                    <td>12000</td>
+                    
+                    <td>4000</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td>Febbraio</td>
+                    
+                    <td>15000</td>
+                    
+                    <td>5500</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td>Marzo</td>
+                    
+                    <td>11000</td>
+                    
+                    <td>3000</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td>Aprile</td>
+                    
+                    <td>18000</td>
+                    
+                    <td>7000</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td>Maggio</td>
+                    
+                    <td>22000</td>
+                    
+                    <td>9000</td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td>Giugno</td>
+                    
+                    <td>25000</td>
+                    
+                    <td>10500</td>
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                new simpleDatatables.DataTable("#table-8");
+            });
+        </script>
+    </div>
+</div>
+
+
+
+
+<div class="slide ">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        Stato della Pipeline
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    <div class="flex gap-6 my-8 stagger-1">
+        
+        
+<div class="process-step">
+    <div class="text-xs uppercase tracking-widest mb-2 text-accent-primary font-semibold">
+        Fase A
+    </div>
+    <h3 class="text-lg font-bold mb-2 text-text-primary">Cyan Step</h3>
+    <div class="prose prose-sm prose-slate"><p>Verifica l'accento primario.</p></div>
+</div>
+
+        
+        
+<div class="process-step">
+    <div class="text-xs uppercase tracking-widest mb-2 text-accent-primary font-semibold">
+        Fase B
+    </div>
+    <h3 class="text-lg font-bold mb-2 text-text-primary">Pink Step</h3>
+    <div class="prose prose-sm prose-slate"><p>Verifica l'accento secondario.</p></div>
+</div>
+
+        
+        
+<div class="process-step">
+    <div class="text-xs uppercase tracking-widest mb-2 text-accent-primary font-semibold">
+        Fase C
+    </div>
+    <h3 class="text-lg font-bold mb-2 text-text-primary">Purple Step</h3>
+    <div class="prose prose-sm prose-slate"><p>Verifica l'accento terziario.</p></div>
+</div>
+
+        
+    </div>
+
+    
+    <div class="glass-card flex-none mt-2 p-4">
+        <h3 class="text-base uppercase tracking-widest text-accent-primary font-semibold mb-3">
+            Tecnologie Testate
+        </h3>
+        
+<div class="flex flex-wrap gap-2">
+    
+    <span class="tech-badge">YAML</span>
+    
+    <span class="tech-badge">Jinja2</span>
+    
+    <span class="tech-badge">Tailwind</span>
+    
+    <span class="tech-badge">KaTeX</span>
+    
+    <span class="tech-badge">Mermaid</span>
+    
+    <span class="tech-badge">Chart.js</span>
+    
+</div>
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <script>
+    // Navigation Logic
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function updateSlide(newIndex) {
+        if (newIndex < 0 || newIndex >= slides.length) return;
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = newIndex;
+        slides[currentSlideIndex].classList.add('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) updateSlide(currentSlideIndex + 1);
+        if (['ArrowLeft', 'PageUp'].includes(e.key)) updateSlide(currentSlideIndex - 1);
+    });
+
+    // KaTeX Initialization
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof renderMathInElement === 'function') {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\[', display: true }
+                ],
+                throwOnError: false
+            });
+        }
+    });
+</script>
+    
 </body>
 
 </html>

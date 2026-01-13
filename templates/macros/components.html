@@ -1,0 +1,37 @@
+{% macro render_card(card, index) %}
+<div
+    class="glass-card p-7 h-full flex flex-col stagger-{{ index % 3 + 1 }} hover:shadow-xl transition-shadow duration-300">
+    <h3 class="text-xl font-bold mb-3 text-text-primary">{{ card.title }}</h3>
+    {% if card.text %}
+    <div class="prose prose-slate text-text-secondary">{{ card.text | markdown }}</div>
+    {% endif %}
+    {% if card.get('items') %}
+    <ul class="mt-auto space-y-2">
+        {% for item in card.get('items', []) %}
+        <li
+            class="relative pl-5 text-text-secondary before:content-['•'] before:absolute before:left-0 before:text-accent-primary before:font-bold">
+            <div class="prose prose-sm prose-slate inline">{{ item | markdown }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro render_badge_list(badges) %}
+<div class="flex flex-wrap gap-2">
+    {% for badge in badges %}
+    <span class="tech-badge">{{ badge }}</span>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_process_step(step, index) %}
+<div class="process-step">
+    <div class="text-xs uppercase tracking-widest mb-2 text-accent-primary font-semibold">
+        {{ step.header }}
+    </div>
+    <h3 class="text-lg font-bold mb-2 text-text-primary">{{ step.title }}</h3>
+    <div class="prose prose-sm prose-slate">{{ step.text | markdown }}</div>
+</div>
+{% endmacro %}

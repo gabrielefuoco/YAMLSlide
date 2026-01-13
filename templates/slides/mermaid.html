@@ -1,0 +1,12 @@
+<div class="slide {% if outer_loop.first %}active{% endif %}">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        {{ slide.title }}
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    <div class="glass-card flex items-center justify-center h-full stagger-1 p-6 overflow-hidden">
+        <div class="mermaid w-full flex justify-center">
+            {{ slide.code }}
+        </div>
+    </div>
+</div>

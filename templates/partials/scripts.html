@@ -1,0 +1,32 @@
+<script>
+    // Navigation Logic
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function updateSlide(newIndex) {
+        if (newIndex < 0 || newIndex >= slides.length) return;
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = newIndex;
+        slides[currentSlideIndex].classList.add('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) updateSlide(currentSlideIndex + 1);
+        if (['ArrowLeft', 'PageUp'].includes(e.key)) updateSlide(currentSlideIndex - 1);
+    });
+
+    // KaTeX Initialization
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof renderMathInElement === 'function') {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\[', display: true }
+                ],
+                throwOnError: false
+            });
+        }
+    });
+</script>

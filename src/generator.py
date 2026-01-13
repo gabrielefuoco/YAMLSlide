@@ -9,7 +9,7 @@ def markdown_filter(text):
     if not text: return ""
     return markdown.markdown(text)
 
-def generate_presentation(config_path=os.path.join('input', 'config.yaml'), template_path=os.path.join('templates', 'template.html'), output_filename=os.path.join('output', 'presentazione_finale.html')):
+def generate_presentation(config_path=os.path.join('input', 'config.yaml'), template_path=os.path.join('templates', 'index.html'), output_filename=os.path.join('output', 'presentazione_finale.html')):
     """
     Legge la configurazione, processa i dati (CSV per tabelle) e renderizza il template HTML.
     """
@@ -49,6 +49,13 @@ def generate_presentation(config_path=os.path.join('input', 'config.yaml'), temp
 
     # 2. Carica il template HTML
     try:
+        # Fallback to legacy template if index.html is requested by default but missing
+        if template_path.endswith('index.html') and not os.path.exists(template_path):
+            legacy_path = os.path.join('templates', 'template.html')
+            if os.path.exists(legacy_path):
+                print(f"⚠️ '{template_path}' not found, falling back to legacy '{legacy_path}'")
+                template_path = legacy_path
+
         env = Environment(loader=FileSystemLoader('.'))
         env.filters['markdown'] = markdown_filter 
         # Jinja2 uses forward slashes even on Windows

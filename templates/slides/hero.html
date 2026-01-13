@@ -1,0 +1,29 @@
+<div class="slide {% if outer_loop.first %}active{% endif %} text-center justify-center">
+    <div class="mt-auto mb-auto stagger-1">
+        <h1
+            class="text-6xl font-bold leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-accent-primary to-slate-900 mb-6 font-display">
+            {{ slide.title | safe }}
+        </h1>
+        <div class="text-2xl font-medium text-accent-secondary tracking-wide mb-10">
+            {{ slide.subtitle | safe }}
+        </div>
+    </div>
+
+    {% if slide.meta_info %}
+    <div class="flex justify-center items-center text-center pt-10 mt-auto border-t border-black/10 stagger-1">
+        <div class="flex flex-col items-center">
+            <h4 class="text-lg uppercase tracking-[2px] text-accent-primary font-extrabold mb-3">
+                {{ slide.meta_info.label }}
+            </h4>
+            <p class="text-4xl font-bold text-text-primary leading-tight mb-2">
+                {{ slide.meta_info.value }}
+            </p>
+            {% if slide.meta_info.badge %}
+            <div class="mt-2">
+                <span class="id-badge">{{ slide.meta_info.badge }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>

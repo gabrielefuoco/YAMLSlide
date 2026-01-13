@@ -1,171 +1,149 @@
-# --- CONFIGURAZIONE GLOBALE (TEMA) ---
+# --- CONFIGURAZIONE GLOBALE: ULTRA-STRESS TEST & COLORI ---
 meta:
-  title: "Titolo Pagina Browser"
-  
-theme:
-  # Palette "Clean Green" originale
-  bg_primary: "#ffffff"
-  accent_primary: "#15803d"    # Green 700
-  accent_secondary: "#16a34a"  # Green 600
-  accent_tertiary: "#0d9488"   # Teal 600
-  text_primary: "#020617"
-  text_secondary: "#334155"
+  title: "YAMLSlide: Il Grande Stress Test Visivo"
 
-  # Configurazione Sfondo (Nuova Feature)
+theme:
+  # Palette "Cyber-Vibrant": Contrasti estremi per testare il motore CSS
+  bg_primary: "#020617"       # Sfondo quasi nero (Slate 950)
+  accent_primary: "#22d3ee"    # Cyan Neon (Cyan 400)
+  accent_secondary: "#f472b6"  # Rosa Neon (Pink 400)
+  accent_tertiary: "#a855f7"   # Viola Elettrico (Purple 500)
+  text_primary: "#f8fafc"      # Bianco Slate per massima leggibilità
+  text_secondary: "#94a3b8"    # Grigio azzurrato per gerarchia visiva
+
+  # Test del sistema multi-livello (Spec: enhanced-background)
   background:
-    type: "abstract" # abstract, solid, gradient
+    type: "abstract"
     base_color: "bg_primary"
     radial_layers:
-      - at: "15% 25%"
+      - at: "0% 0%"
+        color: "accent_primary"
+        opacity: 0.25          # Test trasparenza angolare
+        size: "70%"
+      - at: "100% 100%"
         color: "accent_secondary"
-        opacity: 0.12
-        size: "55%"
-      - at: "85% 75%"
-        color: "accent_tertiary"
-        opacity: 0.12
-        size: "55%"
+        opacity: 0.25
+        size: "70%"
       - at: "50% 50%"
-        color: "accent_secondary"
-        opacity: 0.05
-        size: "60%"
+        color: "accent_tertiary"
+        opacity: 0.15          # Test sovrapposizione centrale
+        size: "50%"
     linear_gradient:
-      angle: "135deg"
+      angle: "180deg"
       stops:
-        - color: "#ffffff"
+        - color: "#020617"
           pos: "0%"
-        - color: "#f7fdf9"
-          pos: "50%"
-        - color: "#ecfdf5"
+        - color: "#0f172a"
           pos: "100%"
 
-# --- CONTENUTO SLIDE ---
+# --- SLIDE DI TEST ---
 slides:
-  # SLIDE 1: TITOLO (HERO)
+  # 1. HERO: Test Entità e Unicode
   - type: "hero"
-    title: "Analizzatore di Opinioni<br>Politiche su Reddit"
-    subtitle: "Implementazione GraphRAG: Knowledge Graph + Retrieval-Augmented Generation"
+    title: "Stress Test: <span style='color: #22d3ee;'>Estremo</span>"
+    subtitle: "Cosa vedere: Verifica il gradiente radiale negli angoli e la resa del testo Cyan."
     meta_info:
-      label: "Studente"
-      value: "Fuoco Gabriele"
-      badge: "Matricola 252053"
+      label: "Versione"
+      value: "9.0.MAX"
+      badge: "ULTRA-VIBRANT"
 
-  # SLIDE 2: GRIGLIA A 2 COLONNE (ABSTRACT)
-  - type: "grid"
-    layout: "2-col"
-    title: "Abstract del Progetto"
-    lead: "Sviluppo di un'architettura end-to-end per la strutturazione di discussioni politiche..."
-    cards:
-      - title: "🎯 Obiettivi Scientifici"
-        items:
-          - "**Modellazione Semantica:** Mappatura esplicita delle relazioni..."
-          - "**Analisi Stance:** Identificazione di gruppi polarizzati..."
-      - title: "🛠️ Metodologia"
-        items:
-          - "**NLP Contestuale:** Utilizzo di LLM locali..."
-          - "**Community Detection:** Algoritmo di Leiden..."
-
-  # SLIDE 3: PROCESSO (ETL)
-  - type: "process"
-    title: "Architettura del Sistema"
-    steps:
-      - header: "Fase 1: ETL"
-        title: "ETL Pipeline"
-        text: "Ingestione asincrona dei dati da Reddit..."
-      - header: "Fase 2: Analisi"
-        title: "Graph Enrichment"
-        text: "Applicazione di algoritmi GDS..."
-      - header: "Fase 3: Inferenza"
-        title: "GraphRAG"
-        text: "Interfaccia conversazionale gestita da Agente ReAct..."
-    
-    # Esempio di Badge Tech Stack in basso
-    footer_badges:
-      title: "Stack Tecnologico"
-      items: ["Python", "Neo4j", "LangChain", "Ollama"]
-
-  # SLIDE 4: ESEMPIO GRAFICO (Nuova feature)
-  - type: "chart"
-    title: "Distribuzione Sentiment"
-    lead: "Analisi preliminare sui dati estratti. **Dati aggiornati al 2024.**"
-    chart_type: "bar" # bar, line, pie, doughnut
-    labels: ["Positivo", "Neutro", "Negativo", "Sarcasmo"]
-    data: [150, 80, 200, 45]
-    dataset_label: "Numero Commenti"
-
-  # SLIDE 5: GRIGLIA 3 COLONNE
+  # 2. GRID: Test Staggering e Markdown (Spec: animation-system, markdown-support)
   - type: "grid"
     layout: "3-col"
-    title: "Pipeline di Acquisizione"
+    title: "Animazioni e Markdown"
+    lead: "COSA VEDERE: Le card devono apparire una dopo l'altra dal basso (staggering). Il testo deve essere formattato correttamente."
     cards:
-      - title: "📥 Extract"
-        text: "Acquisizione **parallela**."
-        items: ["Sorgenti: [Reddit](https://reddit.com)", "Campionamento Top 250"]
-      - title: "⚙️ Transform"
-        text: "Arricchimento *semantico*."
-        items: ["Embedding `768d`", "Stance Detection"]
-      - title: "💾 Load"
-        text: "Modellazione a grafo."
-        items: ["Nodi: User, Post", "Archi: HAS_STANCE"]
+      - title: "Stile Testo"
+        items:
+          - "**Grassetto**, *Corsivo*, ~~Barrato~~"
+          - "[Link Cyan](https://google.com)"
+      - title: "Liste & Simboli"
+        items:
+          - "Entità: &trade; &copy; &reg;"
+          - "Emoji: 🚀 🧬 🧪 🌌"
+      - title: "Codice Inline"
+        items:
+          - "`const test = true;`"
+          - "Path: `/usr/local/bin`"
 
-  # SLIDE 6: CODICE (Nuova feature)
+  # 3. CODE: Test Syntax Highlighting (Spec: new-slide-types)
   - type: "code"
-    title: "Esempio Query Cypher"
-    language: "cypher"
+    title: "Highlighting & Overflow"
+    language: "python"
     code: |
-      MATCH (u:User)-[:POSTED]->(p:Post)
-      WHERE p.sentiment > 0.5
-      RETURN u.name, count(p) as post_count
-      ORDER BY post_count DESC
-      LIMIT 10
+      # COSA VEDERE: I colori dei commenti devono differire dai comandi. 
+      # Una linea molto lunga deve attivare lo scroll o il wrapping senza rompere il layout.
+      def stress_test_colors(palette):
+          for color in palette:
+              print(f"Testing hex code: {color} with a very long string that might overflow the container if not handled properly by the CSS styles...")
+          return "Success! ✅"
 
-  # SLIDE 7: SPLIT (Nuova feature)
+  # 4. CHART: Test Palette Automatica
+  - type: "chart"
+    title: "Resa dei Grafici"
+    lead: "COSA VEDERE: Le barre devono avere colori distinti che risaltano sullo sfondo scuro. Verifica i margini."
+    chart_type: "bar"
+    labels: ["Neon 1", "Neon 2", "Neon 3", "Neon 4"]
+    data: [450, 320, 580, 210]
+    dataset_label: "Valori di Test"
+
+  # 5. SPLIT: Test Bilanciamento Visivo
   - type: "split"
-    title: "Architettura Cloud"
-    layout: "text-left" # o "text-right"
-    image_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080&auto=format&fit=crop"
+    title: "Immagine e Testo"
+    layout: "text-left"
+    image_url: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200&auto=format&fit=crop"
     content: |
-      Il sistema scala orizzontalmente grazie a **Kubernetes**.
+      ### COSA VEDERE:
+      * L'immagine deve riempire la metà destra della slide.
+      * Il testo a sinistra deve avere un padding adeguato.
+      * La citazione qui sotto deve avere uno stile distinto:
       
-      * Pod autoscaling basato su CPU
-      * Load balancer L7 per il traffico in ingresso
-      
-      > "L'architettura è stata progettata per la resilienza."
+      > "Se il design non stressa il codice, non è abbastanza audace."
 
-  - type: split
-    title: "Split Layout"
-    image_url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1352&q=80"
-    layout: text-left
-    content: |
-      ## Caratteristiche
-      
-      * **Immagine a sinistra/destra**
-      * Testo Markdown supportato
-      * *Design reattivo*
-
-  - type: mermaid
-    title: "Architettura (Mermaid)"
+  # 6. MERMAID: Test Diagrammi (Spec: diagrams-as-code)
+  - type: "mermaid"
+    title: "Diagramma Mermaid"
     code: |
-      graph TD
-      A[Client] -->|HTTP| B(Load Balancer)
-      B --> C{Service}
-      C -->|One| D[Server 1]
-      C -->|Two| E[Server 2]
+      graph LR
+        A[Input YAML] --> B{Processore}
+        B -->|Successo| C[HTML Finale]
+        B -->|Errore| D[Log Console]
+        style A fill:#22d3ee,stroke:#fff
+        style C fill:#f472b6,stroke:#fff
+        %% COSA VEDERE: Il diagramma deve essere centrato e i nodi colorati via CSS Mermaid.
 
-  - type: grid
-    title: "Formule Matematiche (KaTeX)"
-    lead: "Supporto nativo per rendering LaTeX."
-    layout: 2-col
+  # 7. MATH: Test KaTeX (Spec: math-support)
+  - type: "grid"
+    layout: "2-col"
+    title: "Formule Matematiche"
+    lead: "COSA VEDERE: Le formule devono essere renderizzate in alta qualità, non come testo semplice."
     cards:
-      - title: "Equazione Energia"
+      - title: "Fisica"
         text: |
-          La famosa equazione di Einstein:
-          $$E = mc^2$$
-      - title: "Identità di Eulero"
+          $$ \mathcal{L} = \bar{\psi}(i\gamma^\mu D_\mu - m)\psi $$
+      - title: "Probabilità"
         text: |
-          La più bella formula matematica:
-          $$e^{i\pi} + 1 = 0$$
+          $$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
 
-  - type: table
-    title: "Dati Finanziari (CSV)"
-    lead: "Dati caricati dinamicamente da 'dati_vendite.csv'."
+  # 8. TABLE: Test Iniezione Dati (Spec: data-tables)
+  - type: "table"
+    title: "Dati da CSV Esterno"
+    lead: "COSA VEDERE: Una tabella generata dai dati di 'dati_vendite.csv'. Verifica che i bordi siano visibili."
     file: "dati_vendite.csv"
+
+  # 9. PROCESS: Test Footer e Badge (Spec: utility-components)
+  - type: "process"
+    title: "Stato della Pipeline"
+    steps:
+      - header: "Fase A"
+        title: "Cyan Step"
+        text: "Verifica l'accento primario."
+      - header: "Fase B"
+        title: "Pink Step"
+        text: "Verifica l'accento secondario."
+      - header: "Fase C"
+        title: "Purple Step"
+        text: "Verifica l'accento terziario."
+    footer_badges:
+      title: "Tecnologie Testate"
+      items: ["YAML", "Jinja2", "Tailwind", "KaTeX", "Mermaid", "Chart.js"]

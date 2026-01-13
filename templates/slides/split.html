@@ -1,0 +1,21 @@
+<div class="slide {% if outer_loop.first %}active{% endif %}">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        {{ slide.title }}
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    {% set text_order = 'order-2' if slide.layout == 'text-right' else 'order-1' %}
+    {% set img_order = 'order-1' if slide.layout == 'text-right' else 'order-2' %}
+
+    <div class="grid grid-cols-2 gap-8 items-center h-full">
+        <div class="{{ text_order }} stagger-1">
+            <div class="prose prose-slate prose-lg text-text-secondary">
+                {{ slide.content | markdown }}
+            </div>
+        </div>
+        <div class="{{ img_order }} stagger-2 flex justify-center">
+            <img src="{{ slide.image_url }}"
+                class="w-full rounded-xl shadow-lg object-cover max-h-[60vh] border border-black/5" alt="Slide Image">
+        </div>
+    </div>
+</div>

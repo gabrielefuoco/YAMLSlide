@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>GraphRAG: Analizzatore Politico Reddit</title>
+<title>YAMLSlide: Il Grande Stress Test Visivo</title>
 <style>@font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -3304,18 +3304,54 @@ Expecting `+Xt.join(", ")+", got '"+(this.terminals_[Mt]||Mt)+"'":_e="Parse erro
         :root {
 
             /* Palette Dinamica dal YAML */
-            --bg-primary: #0f172a;
+            --bg-primary: {
+                    {
+                    theme.bg_primary
+                }
+            }
+
+            ;
             --bg-secondary: #f8fafc;
 
-            --accent-primary: #38bdf8;
+            --accent-primary: {
+                    {
+                    theme.accent_primary
+                }
+            }
 
-            --accent-secondary: #818cf8;
+            ;
 
-            --accent-tertiary: #2dd4bf;
+            --accent-secondary: {
+                    {
+                    theme.accent_secondary
+                }
+            }
 
-            --text-primary: #f8fafc;
+            ;
 
-            --text-secondary: #94a3b8;
+            --accent-tertiary: {
+                    {
+                    theme.accent_tertiary
+                }
+            }
+
+            ;
+
+            --text-primary: {
+                    {
+                    theme.text_primary
+                }
+            }
+
+            ;
+
+            --text-secondary: {
+                    {
+                    theme.text_secondary
+                }
+            }
+
+            ;
 
             --card-bg: rgba(255, 255, 255, 0.9);
             --card-border: rgba(21, 128, 61, 0.2);
@@ -3347,13 +3383,248 @@ Expecting `+Xt.join(", ")+", got '"+(this.terminals_[Mt]||Mt)+"'":_e="Parse erro
             width: 100vw;
             height: 100vh;
             z-index: -2;
-            background-color: #ffffff;
-            background-image:
-                radial-gradient(at 15% 25%, rgba(22, 163, 74, 0.12) 0px, transparent 55%),
-                radial-gradient(at 85% 75%, rgba(13, 148, 136, 0.12) 0px, transparent 55%),
-                radial-gradient(at 50% 50%, rgba(22, 163, 74, 0.05) 0px, transparent 60%),
-                radial-gradient(at 30% 80%, rgba(13, 148, 136, 0.05) 0px, transparent 45%),
-                linear-gradient(135deg, #ffffff 0%, #f7fdf9 50%, #ecfdf5 100%);
+
+                {
+                % set bg=theme.get('background', {}) %
+        }
+
+            {
+            % set bg_type=bg.get('type', 'abstract') %
+        }
+
+            {
+            # Resolver function simulation in Jinja2 #
+        }
+
+            {
+            % macro resolve_color(color_val) -%
+        }
+
+            {
+            % if theme.get(color_val) -%
+        }
+
+            {
+                {
+                theme.get(color_val)
+            }
+        }
+
+            {
+            %- else -%
+        }
+
+            {
+                {
+                color_val
+            }
+        }
+
+            {
+            %- endif %
+        }
+
+            {
+            %- endmacro %
+        }
+
+        background-color: {
+                {
+                resolve_color(bg.get('base_color', theme.bg_primary))
+            }
+        }
+
+        ;
+
+            {
+            % if bg_type=='solid' %
+        }
+
+        background-image: none;
+
+            {
+            % elif bg_type=='gradient' and bg.linear_gradient %
+        }
+
+        background-image: linear-gradient({
+                {
+                bg.linear_gradient.angle
+            }
+        }
+
+        ,
+        {
+        % for stop in bg.linear_gradient.stops %
+        }
+
+            {
+                {
+                resolve_color(stop.color)
+            }
+        }
+
+            {
+                {
+                stop.pos
+            }
+        }
+
+            {
+            % if not loop.last %
+        }
+
+        , {
+        % endif %
+        }
+
+            {
+            % endfor %
+        });
+
+            {
+            % else %
+        }
+        }
+
+            {
+            # Default 'abstract' or customized 'abstract' #
+        }
+
+        background-image: {
+            % if bg.radial_layers %
+        }
+
+            {
+            % for layer in bg.radial_layers %
+        }
+
+        radial-gradient(at {
+                    {
+                    layer.at
+                }
+            }
+
+            ,
+            {
+            %- set col=resolve_color(layer.color) -%
+        }
+
+            {
+            %- if col.startswith ('#') and col|length==7 -%
+        }
+
+        rgba({
+                {
+                col[1:3]|int(0, 16)
+            }
+        }
+
+        , {
+            {
+            col[3:5]|int(0, 16)
+        }
+        }
+
+        , {
+            {
+            col[5:7]|int(0, 16)
+        }
+        }
+
+        , {
+            {
+            layer.opacity
+        }
+
+        }) {
+            %- else -%
+        }
+
+            {
+                {
+                col
+            }
+        }
+
+            {
+            %- endif %
+        }
+
+        0px, transparent {
+                {
+                layer.size
+            }
+
+        }),
+        {
+        % endfor %
+        }
+
+            {
+            % else %
+        }
+
+        radial-gradient(at 15% 25%, rgba(22, 163, 74, 0.12) 0px, transparent 55%),
+        radial-gradient(at 85% 75%, rgba(13, 148, 136, 0.12) 0px, transparent 55%),
+        radial-gradient(at 50% 50%, rgba(22, 163, 74, 0.05) 0px, transparent 60%),
+        radial-gradient(at 30% 80%, rgba(13, 148, 136, 0.05) 0px, transparent 45%),
+        {
+        % endif %
+        }
+
+            {
+            % if bg.linear_gradient %
+        }
+
+        linear-gradient({
+                {
+                bg.linear_gradient.angle
+            }
+        }
+
+        ,
+        {
+        % for stop in bg.linear_gradient.stops %
+        }
+
+            {
+                {
+                resolve_color(stop.color)
+            }
+        }
+
+            {
+                {
+                stop.pos
+            }
+        }
+
+            {
+            % if not loop.last %
+        }
+
+        , {
+        % endif %
+        }
+
+            {
+            % endfor %
+
+        }) {
+            % else %
+        }
+
+        linear-gradient(135deg, #ffffff 0%, #f7fdf9 50%, #ecfdf5 100%) {
+            % endif %
+        }
+
+        ;
+
+            {
+            % endif %
+        }
+        }
+        }
         }
 
         .presentation {
@@ -3751,79 +4022,69 @@ Expecting `+Xt.join(", ")+", got '"+(this.terminals_[Mt]||Mt)+"'":_e="Parse erro
 <div class="presentation">
 <div class="slide active">
 <div class="stagger-1" style="margin-top: auto; margin-bottom: auto; text-align: center;">
-<h1>Analizzatore di Opinioni<br/>Politiche su Reddit</h1>
-<div class="subtitle">Implementazione GraphRAG: Knowledge Graph + Retrieval-Augmented Generation</div>
+<h1>Stress Test: <span style="color: #22d3ee;">Estremo</span></h1>
+<div class="subtitle">Cosa vedere: Verifica il gradiente radiale negli angoli e la resa del testo Cyan.</div>
 </div>
 <div class="meta-grid stagger-1">
 <div class="meta-item student-highlight">
-<h4>Studente</h4>
-<p>Fuoco Gabriele</p>
-<div><span class="id-badge">Matricola 252053</span></div>
+<h4>Versione</h4>
+<p>9.0.MAX</p>
+<div><span class="id-badge">ULTRA-VIBRANT</span></div>
 </div>
 </div>
 </div>
 <div class="slide">
-<h2>Abstract del Progetto</h2>
-<div class="markdown-body lead stagger-1"><p>Sviluppo di un'architettura end-to-end per la strutturazione di discussioni politiche tramite grafi di conoscenza.</p></div>
-<div class="grid-2">
+<h2>Animazioni e Markdown</h2>
+<div class="markdown-body lead stagger-1"><p>COSA VEDERE: Le card devono apparire una dopo l'altra dal basso (staggering). Il testo deve essere formattato correttamente.</p></div>
+<div class="grid-3">
 <div class="card stagger-1">
-<h3>🎯 Obiettivi Scientifici</h3>
+<h3>Stile Testo</h3>
 <ul>
 <li>
-<div class="markdown-body" style="display:inline;"><p><strong>Modellazione Semantica:</strong> Mappatura esplicita delle relazioni tra entità politiche.</p></div>
+<div class="markdown-body" style="display:inline;"><p><strong>Grassetto</strong>, <em>Corsivo</em>, ~~Barrato~~</p></div>
 </li>
 <li>
-<div class="markdown-body" style="display:inline;"><p><strong>Analisi Stance:</strong> Identificazione di gruppi polarizzati tramite sentiment avanzato.</p></div>
+<div class="markdown-body" style="display:inline;"><p><a href="https://google.com">Link Cyan</a></p></div>
 </li>
 </ul>
 </div>
 <div class="card stagger-2">
-<h3>🛠️ Metodologia</h3>
+<h3>Liste &amp; Simboli</h3>
 <ul>
 <li>
-<div class="markdown-body" style="display:inline;"><p><strong>NLP Contestuale:</strong> Utilizzo di LLM locali (Ollama/Llama 3) per l'estrazione.</p></div>
+<div class="markdown-body" style="display:inline;"><p>Entità: ™ © ®</p></div>
 </li>
 <li>
-<div class="markdown-body" style="display:inline;"><p><strong>Community Detection:</strong> Algoritmo di Leiden per trovare cluster di opinione.</p></div>
+<div class="markdown-body" style="display:inline;"><p>Emoji: 🚀 🧬 🧪 🌌</p></div>
+</li>
+</ul>
+</div>
+<div class="card stagger-3">
+<h3>Codice Inline</h3>
+<ul>
+<li>
+<div class="markdown-body" style="display:inline;"><p><code>const test = true;</code></p></div>
+</li>
+<li>
+<div class="markdown-body" style="display:inline;"><p>Path: <code>/usr/local/bin</code></p></div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="slide">
-<h2>Architettura del Sistema</h2>
-<div class="process-container stagger-1">
-<div class="process-step">
-<div class="step-header">Fase 1: ETL</div>
-<h3>ETL Pipeline</h3>
-<div class="markdown-body"><p>Ingestione asincrona dei dati da Reddit tramite API PRAW.</p></div>
-</div>
-<div class="process-step">
-<div class="step-header">Fase 2: Analisi</div>
-<h3>Graph Enrichment</h3>
-<div class="markdown-body"><p>Applicazione di algoritmi GDS (Graph Data Science) in Neo4j.</p></div>
-</div>
-<div class="process-step">
-<div class="step-header">Fase 3: Inferenza</div>
-<h3>GraphRAG</h3>
-<div class="markdown-body"><p>Interfaccia conversazionale gestita da Agente ReAct per query complesse.</p></div>
-</div>
-</div>
-<div class="card" style="flex: 0 0 auto; height: auto; margin-top: 10px;">
-<h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary)">
-                    Stack Tecnologico
-                </h3>
-<div class="tech-stack">
-<span class="tech-badge">Python</span>
-<span class="tech-badge">Neo4j</span>
-<span class="tech-badge">LangChain</span>
-<span class="tech-badge">Ollama</span>
-</div>
-</div>
+<h2>Highlighting &amp; Overflow</h2>
+<pre class="stagger-1"><code class="language-python"># COSA VEDERE: I colori dei commenti devono differire dai comandi. 
+# Una linea molto lunga deve attivare lo scroll o il wrapping senza rompere il layout.
+def stress_test_colors(palette):
+    for color in palette:
+        print(f"Testing hex code: {color} with a very long string that might overflow the container if not handled properly by the CSS styles...")
+    return "Success! ✅"
+</code></pre>
 </div>
 <div class="slide">
-<h2>Distribuzione Sentiment</h2>
-<div class="markdown-body lead stagger-1"><p>Analisi preliminare sui dati estratti. <strong>Dati aggiornati al 2024.</strong></p></div>
+<h2>Resa dei Grafici</h2>
+<div class="markdown-body lead stagger-1"><p>COSA VEDERE: Le barre devono avere colori distinti che risaltano sullo sfondo scuro. Verifica i margini.</p></div>
 <div class="card chart-container stagger-2">
 <canvas id="chart-4"></canvas>
 </div>
@@ -3833,10 +4094,10 @@ Expecting `+Xt.join(", ")+", got '"+(this.terminals_[Mt]||Mt)+"'":_e="Parse erro
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: ["Positivo", "Neutro", "Negativo", "Sarcasmo"],
+                            labels: ["Neon 1", "Neon 2", "Neon 3", "Neon 4"],
                     datasets: [{
-                        label: 'Numero Commenti',
-                        data: [150, 80, 200, 45],
+                        label: 'Valori di Test',
+                        data: [450, 320, 580, 210],
                     backgroundColor: [
                         'rgba(21, 128, 61, 0.7)',
                         'rgba(13, 148, 136, 0.7)',
@@ -3856,121 +4117,136 @@ Expecting `+Xt.join(", ")+", got '"+(this.terminals_[Mt]||Mt)+"'":_e="Parse erro
             </script>
 </div>
 <div class="slide">
-<h2>Pipeline di Acquisizione</h2>
-<div class="grid-3">
-<div class="card stagger-1">
-<h3>📥 Extract</h3>
-<div class="markdown-body"><p>Acquisizione <strong>parallela</strong>.</p></div>
-<ul>
-<li>
-<div class="markdown-body" style="display:inline;"><p>Sorgenti: Reddit API</p></div>
-</li>
-<li>
-<div class="markdown-body" style="display:inline;"><p>Campionamento Top 250</p></div>
-</li>
-</ul>
-</div>
-<div class="card stagger-2">
-<h3>⚙️ Transform</h3>
-<div class="markdown-body"><p>Arricchimento <em>semantico</em>.</p></div>
-<ul>
-<li>
-<div class="markdown-body" style="display:inline;"><p>Embedding <code>768d</code></p></div>
-</li>
-<li>
-<div class="markdown-body" style="display:inline;"><p>Stance Detection</p></div>
-</li>
-</ul>
-</div>
-<div class="card stagger-3">
-<h3>💾 Load</h3>
-<div class="markdown-body"><p>Modellazione a grafo.</p></div>
-<ul>
-<li>
-<div class="markdown-body" style="display:inline;"><p>Nodi: User, Post</p></div>
-</li>
-<li>
-<div class="markdown-body" style="display:inline;"><p>Archi: HAS_STANCE</p></div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="slide">
-<h2>Esempio Query Cypher</h2>
-<pre class="stagger-1"><code class="language-cypher">MATCH (u:User)-[:POSTED]-&gt;(p:Post)
-WHERE p.sentiment &gt; 0.5
-RETURN u.name, count(p) as post_count
-ORDER BY post_count DESC
-LIMIT 10
-</code></pre>
-</div>
-<div class="slide">
-<h2>Architettura Cloud</h2>
+<h2>Immagine e Testo</h2>
 <div class="grid-2" style="align-items: center;">
 <div class="stagger-1" style="order: 1">
-<div class="markdown-body"><p>Il sistema scala orizzontalmente grazie a <strong>Kubernetes</strong>.</p>
+<div class="markdown-body"><h3>COSA VEDERE:</h3>
 <ul>
-<li>Pod autoscaling basato su risorse CPU/GPU</li>
-<li>Gestione dello stato dei nodi Neo4j in cluster</li>
+<li>L'immagine deve riempire la metà destra della slide.</li>
+<li>Il testo a sinistra deve avere un padding adeguato.</li>
+<li>La citazione qui sotto deve avere uno stile distinto:</li>
 </ul>
 <blockquote>
-<p>"L'efficienza del retrieval dipende dalla topologia del grafo."</p>
+<p>"Se il design non stressa il codice, non è abbastanza audace."</p>
 </blockquote></div>
 </div>
 <div class="stagger-2" style="order: 2">
-<img alt="Slide Image" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&amp;w=1080&amp;auto=format&amp;fit=crop" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"/>
+<img alt="Slide Image" src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&amp;w=1200&amp;auto=format&amp;fit=crop" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"/>
 </div>
 </div>
 </div>
 <div class="slide">
-<h2>Flusso Dati RAG</h2>
+<h2>Diagramma Mermaid</h2>
 <div class="card stagger-1" style="display: flex; align-items: center; justify-content: center;">
 <div class="mermaid">
                     graph LR
-A[Query Utente] --&gt; B{Retriever}
-B --&gt; C[(Neo4j Graph)]
-B --&gt; D[(Vector Store)]
-C --&gt; E[LLM Generator]
-D --&gt; E
-E --&gt; F[Risposta Parlata]
+  A[Input YAML] --&gt; B{Processore}
+  B --&gt;|Successo| C[HTML Finale]
+  B --&gt;|Errore| D[Log Console]
+  style A fill:#22d3ee,stroke:#fff
+  style C fill:#f472b6,stroke:#fff
+  %% COSA VEDERE: Il diagramma deve essere centrato e i nodi colorati via CSS Mermaid.
 
                 </div>
 </div>
 </div>
 <div class="slide">
-<h2>Metriche di Centralità</h2>
-<div class="markdown-body lead stagger-1"><p>Fondamenti matematici per l'analisi dei nodi.</p></div>
+<h2>Formule Matematiche</h2>
+<div class="markdown-body lead stagger-1"><p>COSA VEDERE: Le formule devono essere renderizzate in alta qualità, non come testo semplice.</p></div>
 <div class="grid-2">
 <div class="card stagger-1">
-<h3>PageRank</h3>
-<div class="markdown-body"><p>Calcolo dell'importanza relativa:
-$$PR(u) = \frac{1-d}{N} + d \sum_{v \in \mathcal{B}_u} \frac{PR(v)}{L(v)}$$</p></div>
+<h3>Fisica</h3>
+<div class="markdown-body"><p>$$ \mathcal{L} = \bar{\psi}(i\gamma^\mu D_\mu - m)\psi $$</p></div>
 </div>
 <div class="card stagger-2">
-<h3>Cosine Similarity</h3>
-<div class="markdown-body"><p>Similitudine tra embedding:
-$$\text{sim}(A, B) = \frac{A \cdot B}{\|A\| \|B\|}$$</p></div>
+<h3>Probabilità</h3>
+<div class="markdown-body"><p>$$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$</p></div>
 </div>
 </div>
 </div>
 <div class="slide">
-<h2>Performance Modelli</h2>
-<div class="markdown-body lead stagger-1"><p>Confronto latenza e precisione per l'estrazione di entità.</p></div>
+<h2>Dati da CSV Esterno</h2>
+<div class="markdown-body lead stagger-1"><p>COSA VEDERE: Una tabella generata dai dati di 'dati_vendite.csv'. Verifica che i bordi siano visibili.</p></div>
 <div class="card stagger-2">
-<table id="table-10">
+<table id="table-8">
 <thead>
 <tr>
+<th>Mese</th>
+<th>Vendite</th>
+<th>Utile</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Gennaio</td>
+<td>12000</td>
+<td>4000</td>
+</tr>
+<tr>
+<td>Febbraio</td>
+<td>15000</td>
+<td>5500</td>
+</tr>
+<tr>
+<td>Marzo</td>
+<td>11000</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>Aprile</td>
+<td>18000</td>
+<td>7000</td>
+</tr>
+<tr>
+<td>Maggio</td>
+<td>22000</td>
+<td>9000</td>
+</tr>
+<tr>
+<td>Giugno</td>
+<td>25000</td>
+<td>10500</td>
+</tr>
 </tbody>
 </table>
 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        new simpleDatatables.DataTable("#table-10");
+                        new simpleDatatables.DataTable("#table-8");
                     });
                 </script>
+</div>
+</div>
+<div class="slide">
+<h2>Stato della Pipeline</h2>
+<div class="process-container stagger-1">
+<div class="process-step">
+<div class="step-header">Fase A</div>
+<h3>Cyan Step</h3>
+<div class="markdown-body"><p>Verifica l'accento primario.</p></div>
+</div>
+<div class="process-step">
+<div class="step-header">Fase B</div>
+<h3>Pink Step</h3>
+<div class="markdown-body"><p>Verifica l'accento secondario.</p></div>
+</div>
+<div class="process-step">
+<div class="step-header">Fase C</div>
+<h3>Purple Step</h3>
+<div class="markdown-body"><p>Verifica l'accento terziario.</p></div>
+</div>
+</div>
+<div class="card" style="flex: 0 0 auto; height: auto; margin-top: 10px;">
+<h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary)">
+                    Tecnologie Testate
+                </h3>
+<div class="tech-stack">
+<span class="tech-badge">YAML</span>
+<span class="tech-badge">Jinja2</span>
+<span class="tech-badge">Tailwind</span>
+<span class="tech-badge">KaTeX</span>
+<span class="tech-badge">Mermaid</span>
+<span class="tech-badge">Chart.js</span>
+</div>
 </div>
 </div>
 </div>

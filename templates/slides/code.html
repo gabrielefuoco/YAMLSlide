@@ -1,0 +1,9 @@
+<div class="slide {% if outer_loop.first %}active{% endif %}">
+    <h2 class="text-4xl font-semibold text-text-primary mb-4 flex items-center tracking-tight">
+        {{ slide.title }}
+        <span class="flex-1 h-0.5 bg-gradient-to-r from-accent-primary to-transparent ml-8 opacity-30"></span>
+    </h2>
+
+    <pre
+        class="stagger-1 rounded-lg overflow-hidden shadow-xl"><code class="language-{{ slide.language }}">{{ slide.code }}</code></pre>
+</div>

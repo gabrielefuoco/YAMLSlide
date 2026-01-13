@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    {% include 'templates/partials/head.html' %}
+    {% include 'templates/partials/tailwind-layers.html' %}
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="font-sans bg-transparent overflow-hidden text-text-primary leading-relaxed h-screen w-screen">
+    <div class="background-fx fixed inset-0 -z-10"></div>
+    <div class="presentation w-full h-full relative">
+        {% block content %}{% endblock %}
+    </div>
+    {% include 'templates/partials/scripts.html' %}
+    {% block extra_scripts %}{% endblock %}
+</body>
+
+</html>
