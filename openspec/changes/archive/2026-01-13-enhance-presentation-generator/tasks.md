@@ -1,0 +1,5 @@
+- [x] Install `markdown` package.
+- [x] Refactor `generator.py` to expose `generate_presentation()` and add Markdown filter.
+- [x] Create `watcher.py` for live reload.
+- [x] Update `template.html` with Markdown support, Highlight.js, and new slide layouts.
+- [x] Update `config.yaml` with examples of new features.

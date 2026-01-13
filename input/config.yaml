@@ -1,0 +1,171 @@
+# --- CONFIGURAZIONE GLOBALE (TEMA) ---
+meta:
+  title: "Titolo Pagina Browser"
+  
+theme:
+  # Palette "Clean Green" originale
+  bg_primary: "#ffffff"
+  accent_primary: "#15803d"    # Green 700
+  accent_secondary: "#16a34a"  # Green 600
+  accent_tertiary: "#0d9488"   # Teal 600
+  text_primary: "#020617"
+  text_secondary: "#334155"
+
+  # Configurazione Sfondo (Nuova Feature)
+  background:
+    type: "abstract" # abstract, solid, gradient
+    base_color: "bg_primary"
+    radial_layers:
+      - at: "15% 25%"
+        color: "accent_secondary"
+        opacity: 0.12
+        size: "55%"
+      - at: "85% 75%"
+        color: "accent_tertiary"
+        opacity: 0.12
+        size: "55%"
+      - at: "50% 50%"
+        color: "accent_secondary"
+        opacity: 0.05
+        size: "60%"
+    linear_gradient:
+      angle: "135deg"
+      stops:
+        - color: "#ffffff"
+          pos: "0%"
+        - color: "#f7fdf9"
+          pos: "50%"
+        - color: "#ecfdf5"
+          pos: "100%"
+
+# --- CONTENUTO SLIDE ---
+slides:
+  # SLIDE 1: TITOLO (HERO)
+  - type: "hero"
+    title: "Analizzatore di Opinioni<br>Politiche su Reddit"
+    subtitle: "Implementazione GraphRAG: Knowledge Graph + Retrieval-Augmented Generation"
+    meta_info:
+      label: "Studente"
+      value: "Fuoco Gabriele"
+      badge: "Matricola 252053"
+
+  # SLIDE 2: GRIGLIA A 2 COLONNE (ABSTRACT)
+  - type: "grid"
+    layout: "2-col"
+    title: "Abstract del Progetto"
+    lead: "Sviluppo di un'architettura end-to-end per la strutturazione di discussioni politiche..."
+    cards:
+      - title: "🎯 Obiettivi Scientifici"
+        items:
+          - "**Modellazione Semantica:** Mappatura esplicita delle relazioni..."
+          - "**Analisi Stance:** Identificazione di gruppi polarizzati..."
+      - title: "🛠️ Metodologia"
+        items:
+          - "**NLP Contestuale:** Utilizzo di LLM locali..."
+          - "**Community Detection:** Algoritmo di Leiden..."
+
+  # SLIDE 3: PROCESSO (ETL)
+  - type: "process"
+    title: "Architettura del Sistema"
+    steps:
+      - header: "Fase 1: ETL"
+        title: "ETL Pipeline"
+        text: "Ingestione asincrona dei dati da Reddit..."
+      - header: "Fase 2: Analisi"
+        title: "Graph Enrichment"
+        text: "Applicazione di algoritmi GDS..."
+      - header: "Fase 3: Inferenza"
+        title: "GraphRAG"
+        text: "Interfaccia conversazionale gestita da Agente ReAct..."
+    
+    # Esempio di Badge Tech Stack in basso
+    footer_badges:
+      title: "Stack Tecnologico"
+      items: ["Python", "Neo4j", "LangChain", "Ollama"]
+
+  # SLIDE 4: ESEMPIO GRAFICO (Nuova feature)
+  - type: "chart"
+    title: "Distribuzione Sentiment"
+    lead: "Analisi preliminare sui dati estratti. **Dati aggiornati al 2024.**"
+    chart_type: "bar" # bar, line, pie, doughnut
+    labels: ["Positivo", "Neutro", "Negativo", "Sarcasmo"]
+    data: [150, 80, 200, 45]
+    dataset_label: "Numero Commenti"
+
+  # SLIDE 5: GRIGLIA 3 COLONNE
+  - type: "grid"
+    layout: "3-col"
+    title: "Pipeline di Acquisizione"
+    cards:
+      - title: "📥 Extract"
+        text: "Acquisizione **parallela**."
+        items: ["Sorgenti: [Reddit](https://reddit.com)", "Campionamento Top 250"]
+      - title: "⚙️ Transform"
+        text: "Arricchimento *semantico*."
+        items: ["Embedding `768d`", "Stance Detection"]
+      - title: "💾 Load"
+        text: "Modellazione a grafo."
+        items: ["Nodi: User, Post", "Archi: HAS_STANCE"]
+
+  # SLIDE 6: CODICE (Nuova feature)
+  - type: "code"
+    title: "Esempio Query Cypher"
+    language: "cypher"
+    code: |
+      MATCH (u:User)-[:POSTED]->(p:Post)
+      WHERE p.sentiment > 0.5
+      RETURN u.name, count(p) as post_count
+      ORDER BY post_count DESC
+      LIMIT 10
+
+  # SLIDE 7: SPLIT (Nuova feature)
+  - type: "split"
+    title: "Architettura Cloud"
+    layout: "text-left" # o "text-right"
+    image_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080&auto=format&fit=crop"
+    content: |
+      Il sistema scala orizzontalmente grazie a **Kubernetes**.
+      
+      * Pod autoscaling basato su CPU
+      * Load balancer L7 per il traffico in ingresso
+      
+      > "L'architettura è stata progettata per la resilienza."
+
+  - type: split
+    title: "Split Layout"
+    image_url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1352&q=80"
+    layout: text-left
+    content: |
+      ## Caratteristiche
+      
+      * **Immagine a sinistra/destra**
+      * Testo Markdown supportato
+      * *Design reattivo*
+
+  - type: mermaid
+    title: "Architettura (Mermaid)"
+    code: |
+      graph TD
+      A[Client] -->|HTTP| B(Load Balancer)
+      B --> C{Service}
+      C -->|One| D[Server 1]
+      C -->|Two| E[Server 2]
+
+  - type: grid
+    title: "Formule Matematiche (KaTeX)"
+    lead: "Supporto nativo per rendering LaTeX."
+    layout: 2-col
+    cards:
+      - title: "Equazione Energia"
+        text: |
+          La famosa equazione di Einstein:
+          $$E = mc^2$$
+      - title: "Identità di Eulero"
+        text: |
+          La più bella formula matematica:
+          $$e^{i\pi} + 1 = 0$$
+
+  - type: table
+    title: "Dati Finanziari (CSV)"
+    lead: "Dati caricati dinamicamente da 'dati_vendite.csv'."
+    file: "dati_vendite.csv"

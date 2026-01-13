@@ -1,0 +1,9 @@
+- [x] Install `beautifulsoup4` `requests`.
+- [x] Create spec deltas for all features.
+- [x] Update `generator.py` to handle `csv` data loading for table slides.
+- [x] Update `template.html`:
+    - [x] Add Mermaid.js CDN and logic.
+    - [x] Add KaTeX CDN and logic.
+    - [x] Add `simple-datatables` CDN and table template.
+- [x] Implement `bundler.py` for single-file export (downloading CDNs and embedding local assets).
+- [x] Verify with complex config examples.

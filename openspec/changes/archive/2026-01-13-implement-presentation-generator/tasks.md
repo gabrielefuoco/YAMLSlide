@@ -1,0 +1,4 @@
+- [x] Create `config.yaml` with the provided content structure.
+- [x] Create `template.html` with the provided Jinja2 template and CSS.
+- [x] Create `generator.py` with the provided Python script logic.
+- [x] Verify generation by running `python generator.py`.
