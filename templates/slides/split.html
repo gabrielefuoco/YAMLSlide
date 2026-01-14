@@ -1,0 +1,31 @@
+{% import 'templates/macros/atoms.html' as atoms %}
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out grid grid-cols-2 gap-12 items-center {% if outer_loop.first %}opacity-100 z-10 active{% else %}z-0{% endif %}"
+    data-slide-index="{{ outer_loop.index0 }}">
+
+    <div class="flex flex-col justify-center">
+        <h2 class="text-5xl font-bold text-text-primary mb-8">{{ slide.title }}</h2>
+        {{ atoms.render_markdown(slide.content or slide.text, 'text-lg text-text-secondary leading-relaxed') }}
+
+        {% set items = slide.get('items', []) %}
+        {% if items %}
+        <ul class="mt-8 space-y-4">
+            {% for item in items %}
+            <li class="flex items-start gap-3 text-text-secondary">
+                <span class="text-accent-primary mt-1.5 text-xl">•</span>
+                <span class="text-lg">{{ item }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="h-full max-h-[80vh] flex items-center justify-center">
+        {% if slide.image %}
+        {{ atoms.render_image(slide.image, slide.title, 'rounded-2xl shadow-2xl object-cover h-full w-full') }}
+        {% elif slide.code %}
+        {{ atoms.render_code(slide.code, slide.language | default('text'), slide.filename, 'h-full w-full shadow-2xl')
+        }}
+        {% endif %}
+    </div>
+</div>

@@ -9,69 +9,9 @@ def markdown_filter(text):
     if not text: return ""
     return markdown.markdown(text)
 
-DEFAULT_BLUEPRINTS = {
-    'hero': {
-        'layout': 'flex flex-col items-center justify-center text-center h-full',
-        'slots': [
-            {'name': 'title', 'component': 'markdown', 'class': 'text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-text-primary mb-8 animate-fade-up'},
-            {'name': 'subtitle', 'component': 'markdown', 'class': 'text-xl text-text-secondary mb-10 animate-fade-up delay-100'}
-        ]
-    },
-    'split': {
-        'layout': 'grid grid-cols-2 gap-12 items-center h-full',
-        'slots': [
-            {'name': 'content', 'component': 'markdown', 'class': 'col-span-1 animate-fade-in'},
-            {'name': 'image_url', 'component': 'image', 'class': 'col-span-1 rounded-2xl shadow-2xl animate-fade-in delay-200'}
-        ]
-    },
-    'code': {
-        'layout': 'h-full flex flex-col',
-        'slots': [
-             {'name': 'title', 'component': 'markdown', 'class': 'text-5xl font-bold text-text-primary mb-6'},
-             {'name': 'code', 'component': 'code', 'class': 'flex-1 overflow-auto'}
-        ]
-    },
-    'grid': {
-        'layout': 'flex flex-col h-full',
-        'slots': [
-            {'name': 'title', 'component': 'markdown', 'class': 'text-5xl font-bold text-text-primary mb-4'},
-            {'name': 'lead', 'component': 'markdown', 'class': 'text-lg text-text-secondary mb-8'},
-            {'name': 'cards', 'component': 'card', 'class': 'col-span-1'}
-        ]
-    },
-    'table': {
-         'layout': 'flex flex-col h-full',
-         'slots': [
-             {'name': 'title', 'component': 'markdown', 'class': 'text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-text-primary mb-8'},
-             {'name': 'table_data', 'component': 'table', 'class': 'flex-1 overflow-visible'}
-         ]
-    },
-    'mermaid': {
-        'layout': 'flex flex-col h-full',
-        'slots': [
-            {'name': 'title', 'component': 'markdown', 'class': 'text-5xl font-bold text-text-primary mb-8'},
-            {'name': 'code', 'component': 'mermaid', 'class': 'flex-1'}
-        ]
-    },
-    'chart': {
-        'layout': 'flex flex-col h-full',
-        'slots': [
-            {'name': 'title', 'component': 'markdown', 'class': 'text-5xl font-bold text-text-primary mb-4'},
-            {'name': 'lead', 'component': 'markdown', 'class': 'text-lg text-text-secondary mb-8'},
-            {'name': 'chart_data', 'component': 'chart', 'class': 'flex-1'}
-        ]
-    },
-    'process': {
-        'layout': 'flex flex-col justify-center h-full',
-        'slots': [
-             {'name': 'title', 'component': 'markdown', 'class': 'text-5xl font-bold text-text-primary mb-12 text-center'},
-             {'name': 'steps', 'component': 'process', 'class': 'w-full'},
-             {'name': 'footer_badges', 'component': 'badges', 'class': 'w-full'}
-        ]
-    }
-}
+# DEFAULT_BLUEPRINTS removed in favor of Jinja2 templates
 
-def generate_presentation(config_path=os.path.join('input', 'config.yaml'), template_path=os.path.join('templates', 'universal.html'), output_filename=os.path.join('output', 'presentazione_finale.html')):
+def generate_presentation(config_path=os.path.join('input', 'config.yaml'), template_path=os.path.join('templates', 'index.html'), output_filename=os.path.join('output', 'presentazione_finale.html')):
     """
     Legge la configurazione, processa i dati (CSV per tabelle) e renderizza il template HTML.
     """
@@ -113,13 +53,6 @@ def generate_presentation(config_path=os.path.join('input', 'config.yaml'), temp
                 
                 # Pre-processamento: Chart data
                 if slide.get('type') == 'chart':
-                    # Universal template expects a single object or arguments passed to atom
-                    # But atom call in universal.html is: render_chart(content, type)
-                    # We need content to carry data, labels, label.
-                    # Wait, our render_chart signature is (data, type, labels, label)
-                    # And universal.html calls it as: {{ atoms.render_chart(content, slide.chart_type) }}
-                    # We need to update universal.html to pass all args, OR package them into 'content'.
-                    # Let's package them.
                     slide['chart_data'] = slide.get('data', [])
 
 
@@ -132,11 +65,6 @@ def generate_presentation(config_path=os.path.join('input', 'config.yaml'), temp
 
     # 2. Carica il template HTML
     try:
-        # Resolve blueprints
-        blueprints = DEFAULT_BLUEPRINTS.copy()
-        if 'blueprints' in config:
-            blueprints.update(config['blueprints'])
-
         env = Environment(loader=FileSystemLoader('.'))
         env.filters['markdown'] = markdown_filter 
         # Jinja2 uses forward slashes even on Windows
@@ -150,8 +78,7 @@ def generate_presentation(config_path=os.path.join('input', 'config.yaml'), temp
         output_html = template.render(
             meta=config.get('meta', {}),
             theme=config.get('theme', {}),
-            slides=config.get('slides', []),
-            blueprints=blueprints
+            slides=config.get('slides', [])
         )
     except Exception as e:
         with open("traceback.log", "a") as tf:

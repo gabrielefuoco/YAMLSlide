@@ -1,0 +1,34 @@
+{% import 'templates/macros/atoms.html' as atoms %}
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col items-center justify-center text-center {% if outer_loop.first %}opacity-100 z-10 active{% else %}z-0{% endif %}"
+    data-slide-index="{{ outer_loop.index0 }}">
+
+    <div
+        class="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-text-primary mb-8 animate-fade-up">
+        {{ atoms.render_markdown(slide.title) }}
+    </div>
+
+    {% if slide.subtitle %}
+    <div class="text-xl text-text-secondary mb-10 animate-fade-up delay-100">
+        {{ atoms.render_markdown(slide.subtitle) }}
+    </div>
+    {% endif %}
+
+    {% if slide.meta_info %}
+    <div class="mt-auto pt-8 border-t border-card-border/30 flex gap-8 animate-fade-up delay-200">
+        <div class="text-left">
+            <div class="text-xs font-bold text-accent-primary uppercase tracking-widest mb-1">{{ slide.meta_info.label
+                }}</div>
+            <div class="text-2xl font-bold text-text-primary">{{ slide.meta_info.value }}</div>
+        </div>
+        {% if slide.meta_info.badge %}
+        <div class="flex items-center">
+            <span
+                class="px-3 py-1 bg-accent-primary/10 text-accent-primary rounded-full text-xs font-mono font-bold border border-accent-primary/20">
+                {{ slide.meta_info.badge }}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

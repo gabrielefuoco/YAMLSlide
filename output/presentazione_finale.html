@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 
@@ -730,103 +729,78 @@
         }
     });
 </script>
+
     
 </head>
 
-<body class="font-sans bg-bg-primary text-text-primary leading-relaxed h-screen w-screen overflow-hidden">
-    <!-- Background FX -->
-    <div class="fixed inset-0 -z-10 bg-gradient-to-br from-bg-primary via-bg-primary to-slate-900 pointer-events-none">
-    </div>
-
+<body class="font-sans bg-transparent overflow-hidden text-text-primary leading-relaxed h-screen w-screen">
+    <div class="background-fx fixed inset-0 -z-10"></div>
     <div class="presentation w-full h-full relative">
         
-        
-        
-        <!-- Default to hero if unknown -->
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out opacity-100 z-10 active"
-            data-slide-index="0">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col items-center justify-center text-center h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-text-primary mb-8 animate-fade-up ">
-                    
-                    
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col items-center justify-center text-center opacity-100 z-10 active"
+    data-slide-index="0">
+
+    <div
+        class="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-text-primary mb-8 animate-fade-up">
+        
 <div class="prose prose-invert max-w-none ">
     <p>Stress Test: <span style='color: #0891b2;'>Light Edition</span></p>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-xl text-text-secondary mb-10 animate-fade-up delay-100 ">
-                    
-                    
+    </div>
+
+    
+    <div class="text-xl text-text-secondary mb-10 animate-fade-up delay-100">
+        
 <div class="prose prose-invert max-w-none ">
     <p>Cosa vedere: Verifica il contrasto del testo scuro su sfondo chiaro e la pulizia dei gradienti.</p>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
+    </div>
+    
+
+    
+    <div class="mt-auto pt-8 border-t border-card-border/30 flex gap-8 animate-fade-up delay-200">
+        <div class="text-left">
+            <div class="text-xs font-bold text-accent-primary uppercase tracking-widest mb-1">Versione</div>
+            <div class="text-2xl font-bold text-text-primary">9.0.LIGHT</div>
         </div>
         
+        <div class="flex items-center">
+            <span
+                class="px-3 py-1 bg-accent-primary/10 text-accent-primary rounded-full text-xs font-mono font-bold border border-accent-primary/20">
+                HIGH-CONTRAST
+            </span>
+        </div>
         
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="1">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Animazioni e Markdown</p>
+    </div>
+    
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="1">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-4">Animazioni e Markdown</h2>
+    
+    <div class="text-lg text-text-secondary mb-8 max-w-4xl">
 <div class="prose prose-invert max-w-none ">
     <p>COSA VEDERE: Le card devono avere ombreggiature sottili per staccarsi dallo sfondo bianco.</p>
 </div>
+</div>
+    
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 ">
-                    
-                    
-                    <div class="grid grid-cols-3 gap-6">
-                        
-                        
-<div class="glass-card p-6 ">
+    <div
+        class="grid grid-cols-3 gap-6 flex-1 content-start">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Stile Testo</h3>
     
     
@@ -840,9 +814,9 @@
     
 </div>
 
-                        
-                        
-<div class="glass-card p-6 ">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Liste & Simboli</h3>
     
     
@@ -856,9 +830,9 @@
     
 </div>
 
-                        
-                        
-<div class="glass-card p-6 ">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Codice Inline</h3>
     
     
@@ -872,45 +846,21 @@
     
 </div>
 
-                        
-                    </div>
-                    
-                </div>
-                
-                
-            </div>
-        </div>
         
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="2">
-            <!-- Blueprint Layout -->
-            <div class="h-full flex flex-col">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-6 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Highlighting &amp; Overflow</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 overflow-auto ">
-                    
-                    
-<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="2">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-6">Highlighting & Overflow</h2>
+
+    
+<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg flex-1
+    overflow-auto">
     
     <pre
         class="!m-0 !p-0 !bg-transparent"><code class="language-python !p-6 block text-sm leading-relaxed font-mono"># COSA VEDERE: Su tema chiaro, il blocco codice dovrebbe avere 
@@ -922,57 +872,22 @@ def stress_test_colors(palette):
 </code></pre>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="3">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Resa dei Grafici</p>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>COSA VEDERE: I colori delle barre non devono essere 'sparati', ma leggibili.</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card w-full h-full min-h-[400px] p-6 ">
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="3">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-2">Resa dei Grafici</h2>
+    
+    <div class="text-xl text-text-secondary mb-8">COSA VEDERE: I colori delle barre non devono essere 'sparati', ma leggibili.</div>
+    
+
+    <div class="flex-1 min-h-0 w-full relative">
+        
+<div class="glass-card w-full h-full min-h-[400px] p-6 h-full">
     <canvas data-chart-type="bar" data-chart-labels='["Metric 1", "Metric 2", "Metric 3", "Metric 4"]' data-chart-data='[450, 320, 580, 210]'
         data-chart-label='Valori di Test'></canvas>
     <script>
@@ -1024,29 +939,19 @@ def stress_test_colors(palette):
     </script>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
+    </div>
+</div>
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="4">
-            <!-- Blueprint Layout -->
-            <div class="grid grid-cols-2 gap-12 items-center h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 animate-fade-in ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out grid grid-cols-2 gap-12 items-center z-0"
+    data-slide-index="4">
+
+    <div class="flex flex-col justify-center">
+        <h2 class="text-5xl font-bold text-text-primary mb-8">Immagine e Testo</h2>
+        
+<div class="prose prose-invert max-w-none text-lg text-text-secondary leading-relaxed">
     <h3>COSA VEDERE:</h3>
 <ul>
 <li>L'immagine deve riempire la metà destra della slide.</li>
@@ -1058,57 +963,27 @@ def stress_test_colors(palette):
 </blockquote>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 rounded-2xl shadow-2xl animate-fade-in delay-200 ">
-                    
-                    
-<div class="relative rounded-xl overflow-hidden w-full h-full shadow-lg border border-card-border group">
-    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200&auto=format&fit=crop" alt="Immagine e Testo" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105">
+
+        
+        
+    </div>
+
+    <div class="h-full max-h-[80vh] flex items-center justify-center">
+        
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="5">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Diagramma Mermaid</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card flex items-center justify-center p-8 ">
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="5">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-8 text-center">Diagramma Mermaid</h2>
+
+    <div class="flex-1 flex items-center justify-center">
+        
+<div class="glass-card flex items-center justify-center p-8 w-full max-w-5xl">
     <div class="mermaid w-full flex justify-center text-center">
         graph LR
   A[Input YAML] --> B{Processore}
@@ -1121,60 +996,29 @@ def stress_test_colors(palette):
     </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="6">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Formule Matematiche</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="6">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-4">Formule Matematiche</h2>
+    
+    <div class="text-lg text-text-secondary mb-8 max-w-4xl">
 <div class="prose prose-invert max-w-none ">
     <p>COSA VEDERE: Le formule devono essere nere/scure, ben definite.</p>
 </div>
+</div>
+    
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 ">
-                    
-                    
-                    <div class="grid grid-cols-3 gap-6">
-                        
-                        
-<div class="glass-card p-6 ">
+    <div
+        class="grid grid-cols-2 gap-6 flex-1 content-start">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Fisica</h3>
     
     
@@ -1182,9 +1026,9 @@ def stress_test_colors(palette):
     
 </div>
 
-                        
-                        
-<div class="glass-card p-6 ">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Probabilità</h3>
     
     
@@ -1192,45 +1036,24 @@ def stress_test_colors(palette):
     
 </div>
 
-                        
-                    </div>
-                    
-                </div>
-                
-                
-            </div>
-        </div>
         
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="7">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-text-primary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Dati da CSV Esterno</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 overflow-visible ">
-                    
-                    
-<div class="glass-card overflow-hidden p-6 ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="7">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-2">Dati da CSV Esterno</h2>
+    
+    <div class="text-xl text-text-secondary mb-8">COSA VEDERE: Una tabella pulita, possibilmente con righe zebrate (grigio chiaro/bianco).</div>
+    
+
+    <div class="flex-1 overflow-auto">
+        
+<div class="glass-card overflow-hidden p-6 w-full">
     <table id="table-8" class="w-full text-sm text-left text-text-secondary">
         <thead class="text-xs uppercase bg-card-border/50 text-text-primary">
             <tr>
@@ -1319,43 +1142,20 @@ def stress_test_colors(palette):
     </script>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="8">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col justify-center h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-12 text-center ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Stato della Pipeline</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container w-full ">
-                    
-                    
-<div class="flex gap-6 ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col justify-center z-0"
+    data-slide-index="8">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-12 text-center">Stato della Pipeline</h2>
+
+    <div class="w-full">
+        
+<div class="flex gap-6 w-full">
     
     <div class="glass-card p-6 flex-1 relative overflow-hidden group hover:border-accent-primary/50 transition-colors">
         <div
@@ -1395,110 +1195,29 @@ def stress_test_colors(palette):
     
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container w-full ">
-                    
-                    
-<div class="mt-12 text-center ">
-    
-    <h4 class="text-sm font-bold text-text-secondary uppercase tracking-widest mb-4">Tecnologie Testate</h4>
-    
-    <div class="flex flex-wrap justify-center gap-3">
-        
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            YAML
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Jinja2
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Tailwind
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            KaTeX
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Mermaid
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Chart.js
-        </span>
-        
     </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="9">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Grid 2 Colonne: Mix Contenuti</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="9">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-4">Grid 2 Colonne: Mix Contenuti</h2>
+    
+    <div class="text-lg text-text-secondary mb-8 max-w-4xl">
 <div class="prose prose-invert max-w-none ">
     <p>COSA VEDERE: Due colonne bilanciate su sfondo chiaro.</p>
 </div>
+</div>
+    
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 ">
-                    
-                    
-                    <div class="grid grid-cols-3 gap-6">
-                        
-                        
-<div class="glass-card p-6 ">
+    <div
+        class="grid grid-cols-2 gap-6 flex-1 content-start">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Card Testuale</h3>
     
     
@@ -1507,9 +1226,9 @@ def stress_test_colors(palette):
     
 </div>
 
-                        
-                        
-<div class="glass-card p-6 ">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Card con Lista</h3>
     
     
@@ -1527,59 +1246,24 @@ def stress_test_colors(palette):
     
 </div>
 
-                        
-                    </div>
-                    
-                </div>
-                
-                
-            </div>
-        </div>
         
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="10">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Grafico a Linee: Trend</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>COSA VEDERE: Linea di contrasto forte (es. blu o viola) su griglia grigia.</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card w-full h-full min-h-[400px] p-6 ">
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="10">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-2">Grafico a Linee: Trend</h2>
+    
+    <div class="text-xl text-text-secondary mb-8">COSA VEDERE: Linea di contrasto forte (es. blu o viola) su griglia grigia.</div>
+    
+
+    <div class="flex-1 min-h-0 w-full relative">
+        
+<div class="glass-card w-full h-full min-h-[400px] p-6 h-full">
     <canvas data-chart-type="line" data-chart-labels='["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"]' data-chart-data='[65, 59, 80, 81, 56, 95]'
         data-chart-label='Progresso Mensile'></canvas>
     <script>
@@ -1631,57 +1315,23 @@ def stress_test_colors(palette):
     </script>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="11">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Grafico a Torta: Distribuzione</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>COSA VEDERE: I segmenti devono avere bordi bianchi per separarli.</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card w-full h-full min-h-[400px] p-6 ">
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="11">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-2">Grafico a Torta: Distribuzione</h2>
+    
+    <div class="text-xl text-text-secondary mb-8">COSA VEDERE: I segmenti devono avere bordi bianchi per separarli.</div>
+    
+
+    <div class="flex-1 min-h-0 w-full relative">
+        
+<div class="glass-card w-full h-full min-h-[400px] p-6 h-full">
     <canvas data-chart-type="pie" data-chart-labels='["Frontend", "Backend", "DevOps", "Design"]' data-chart-data='[40, 30, 20, 10]'
         data-chart-label='Team Allocation'></canvas>
     <script>
@@ -1733,57 +1383,23 @@ def stress_test_colors(palette):
     </script>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="12">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Grafico Doughnut</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>COSA VEDERE: Pulizia visiva e legenda leggibile.</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card w-full h-full min-h-[400px] p-6 ">
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="12">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-2">Grafico Doughnut</h2>
+    
+    <div class="text-xl text-text-secondary mb-8">COSA VEDERE: Pulizia visiva e legenda leggibile.</div>
+    
+
+    <div class="flex-1 min-h-0 w-full relative">
+        
+<div class="glass-card w-full h-full min-h-[400px] p-6 h-full">
     <canvas data-chart-type="doughnut" data-chart-labels='["React", "Vue", "Angular", "Svelte"]' data-chart-data='[50, 25, 15, 10]'
         data-chart-label='Framework Usage'></canvas>
     <script>
@@ -1835,29 +1451,19 @@ def stress_test_colors(palette):
     </script>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
+    </div>
+</div>
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="13">
-            <!-- Blueprint Layout -->
-            <div class="grid grid-cols-2 gap-12 items-center h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 animate-fade-in ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out grid grid-cols-2 gap-12 items-center z-0"
+    data-slide-index="13">
+
+    <div class="flex flex-col justify-center">
+        <h2 class="text-5xl font-bold text-text-primary mb-8">Split: Testo a Destra</h2>
+        
+<div class="prose prose-invert max-w-none text-lg text-text-secondary leading-relaxed">
     <h3>COSA VEDERE:</h3>
 <ul>
 <li>L'immagine deve essere a <strong>sinistra</strong></li>
@@ -1868,57 +1474,30 @@ def stress_test_colors(palette):
 </blockquote>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 rounded-2xl shadow-2xl animate-fade-in delay-200 ">
-                    
-                    
-<div class="relative rounded-xl overflow-hidden w-full h-full shadow-lg border border-card-border group">
-    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Split: Testo a Destra" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105">
+
+        
+        
+    </div>
+
+    <div class="h-full max-h-[80vh] flex items-center justify-center">
+        
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="14">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent-primary to-text-primary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Tabella Inline: Dati YAML</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 overflow-visible ">
-                    
-                    
-<div class="glass-card overflow-hidden p-6 ">
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="14">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-2">Tabella Inline: Dati YAML</h2>
+    
+    <div class="text-xl text-text-secondary mb-8">COSA VEDERE: Testo nero su sfondo bianco/grigio.</div>
+    
+
+    <div class="flex-1 overflow-auto">
+        
+<div class="glass-card overflow-hidden p-6 w-full">
     <table id="table-15" class="w-full text-sm text-left text-text-secondary">
         <thead class="text-xs uppercase bg-card-border/50 text-text-primary">
             <tr>
@@ -2009,43 +1588,20 @@ def stress_test_colors(palette):
     </script>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="15">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Sequence Diagram: Flusso Auth</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card flex items-center justify-center p-8 ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="15">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-8 text-center">Sequence Diagram: Flusso Auth</h2>
+
+    <div class="flex-1 flex items-center justify-center">
+        
+<div class="glass-card flex items-center justify-center p-8 w-full max-w-5xl">
     <div class="mermaid w-full flex justify-center text-center">
         sequenceDiagram
   participant U as User
@@ -2059,43 +1615,20 @@ def stress_test_colors(palette):
     </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="16">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-8 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Mermaid Pie Chart</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 ">
-                    
-                    
-<div class="glass-card flex items-center justify-center p-8 ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="16">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-8 text-center">Mermaid Pie Chart</h2>
+
+    <div class="flex-1 flex items-center justify-center">
+        
+<div class="glass-card flex items-center justify-center p-8 w-full max-w-5xl">
     <div class="mermaid w-full flex justify-center text-center">
         pie showData
   title Resource Allocation
@@ -2107,43 +1640,20 @@ def stress_test_colors(palette):
     </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="17">
-            <!-- Blueprint Layout -->
-            <div class="h-full flex flex-col">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-6 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>JavaScript: Async/Await</p>
+    </div>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 overflow-auto ">
-                    
-                    
-<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="17">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-6">JavaScript: Async/Await</h2>
+
+    
+<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg flex-1
+    overflow-auto">
     
     <pre
         class="!m-0 !p-0 !bg-transparent"><code class="language-javascript !p-6 block text-sm leading-relaxed font-mono">// COSA VEDERE: Sintassi JS leggibile (non colori troppo chiari)
@@ -2161,43 +1671,19 @@ async function fetchData(url) {
 </code></pre>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="18">
-            <!-- Blueprint Layout -->
-            <div class="h-full flex flex-col">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-6 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Rust: Memory Safety 🦀</p>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container flex-1 overflow-auto ">
-                    
-                    
-<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="18">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-6">Rust: Memory Safety 🦀</h2>
+
+    
+<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg flex-1
+    overflow-auto">
     
     <pre
         class="!m-0 !p-0 !bg-transparent"><code class="language-rust !p-6 block text-sm leading-relaxed font-mono">// COSA VEDERE: Sintassi Rust
@@ -2212,83 +1698,62 @@ fn main() {
 </code></pre>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
+</div>
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="19">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col items-center justify-center text-center h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-text-primary mb-8 animate-fade-up ">
-                    
-                    
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col items-center justify-center text-center z-0"
+    data-slide-index="19">
+
+    <div
+        class="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-accent-primary to-text-primary mb-8 animate-fade-up">
+        
 <div class="prose prose-invert max-w-none ">
     <p>Stress Test: <span style='color: #db2777;'>Titolo Estremamente Lungo</span> per Verificare l'Overflow</p>
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-xl text-text-secondary mb-10 animate-fade-up delay-100 ">
-                    
-                    
+    </div>
+
+    
+    <div class="text-xl text-text-secondary mb-10 animate-fade-up delay-100">
+        
 <div class="prose prose-invert max-w-none ">
     <p>Questo sottotitolo è intenzionalmente verboso per testare come il layout gestisce contenuti testuali molto estesi che potrebbero superare la larghezza normale della viewport.</p>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
+    </div>
+    
+
+    
+    <div class="mt-auto pt-8 border-t border-card-border/30 flex gap-8 animate-fade-up delay-200">
+        <div class="text-left">
+            <div class="text-xs font-bold text-accent-primary uppercase tracking-widest mb-1">Stress Level</div>
+            <div class="text-2xl font-bold text-text-primary">MAXIMUM</div>
         </div>
         
+        <div class="flex items-center">
+            <span
+                class="px-3 py-1 bg-accent-primary/10 text-accent-primary rounded-full text-xs font-mono font-bold border border-accent-primary/20">
+                EDGE-CASE
+            </span>
+        </div>
         
-        
-        <!-- Default to hero if unknown -->
-
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="20">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col justify-center h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-12 text-center ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Pipeline a 5 Fasi</p>
+    </div>
+    
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container w-full ">
-                    
-                    
-<div class="flex gap-6 ">
+
+
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col justify-center z-0"
+    data-slide-index="20">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-12 text-center">Pipeline a 5 Fasi</h2>
+
+    <div class="w-full">
+        
+<div class="flex gap-6 w-full">
     
     <div class="glass-card p-6 flex-1 relative overflow-hidden group hover:border-accent-primary/50 transition-colors">
         <div
@@ -2352,110 +1817,29 @@ fn main() {
     
 </div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container w-full ">
-                    
-                    
-<div class="mt-12 text-center ">
-    
-    <h4 class="text-sm font-bold text-text-secondary uppercase tracking-widest mb-4">Full Stack</h4>
-    
-    <div class="flex flex-wrap justify-center gap-3">
-        
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Python
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Jinja2
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            HTML5
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            CSS3
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            JS
-        </span>
-        
-        <span
-            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
-            Chart.js
-        </span>
-        
     </div>
 </div>
 
-                    
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        
-        
-        <!-- Default to hero if unknown -->
 
-        <div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out z-0"
-            data-slide-index="21">
-            <!-- Blueprint Layout -->
-            <div class="flex flex-col h-full">
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-5xl font-bold text-text-primary mb-4 ">
-                    
-                    
-<div class="prose prose-invert max-w-none ">
-    <p>Markdown Stress Test</p>
-</div>
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container text-lg text-text-secondary mb-8 ">
-                    
-                    
+
+<div class="slide absolute inset-0 w-full h-full p-16 opacity-0 transition-opacity duration-500 ease-in-out flex flex-col z-0"
+    data-slide-index="21">
+
+    <h2 class="text-5xl font-bold text-text-primary mb-4">Markdown Stress Test</h2>
+    
+    <div class="text-lg text-text-secondary mb-8 max-w-4xl">
 <div class="prose prose-invert max-w-none ">
     <p>COSA VEDERE: Tutte le formattazioni devono essere nitide e scure.</p>
 </div>
+</div>
+    
 
-                    
-                </div>
-                
-                
-                
-                <!-- Skip rendering if content is missing, unless it's a structural slot without data needed? Assuming content required. -->
-                
-                <div class="slot-container col-span-1 ">
-                    
-                    
-                    <div class="grid grid-cols-3 gap-6">
-                        
-                        
-<div class="glass-card p-6 ">
+    <div
+        class="grid grid-cols-2 gap-6 flex-1 content-start">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Formattazione Completa</h3>
     
     
@@ -2467,9 +1851,9 @@ fn main() {
     
 </div>
 
-                        
-                        
-<div class="glass-card p-6 ">
+        
+        
+<div class="glass-card p-6 h-full hover:shadow-xl transition-all duration-300 hover:border-accent-primary/30">
     <h3 class="text-xl font-bold text-text-primary mb-4">Simboli & Unicode</h3>
     
     
@@ -2489,17 +1873,12 @@ fn main() {
     
 </div>
 
-                        
-                    </div>
-                    
-                </div>
-                
-                
-            </div>
-        </div>
         
     </div>
+</div>
 
+
+    </div>
     <script>
     // Navigation Logic
     let currentSlideIndex = 0;
@@ -2541,12 +1920,7 @@ fn main() {
         }
     });
 </script>
-
-    <!-- Navigation script could be here or in scripts.html, ensuring standard slide nav works with new structure -->
-    <script>
-        // Basic slide navigation logic (if not provided by scripts.html)
-        // Assuming scripts.html handles .slide.active toggling
-    </script>
+    
 </body>
 
 </html>
