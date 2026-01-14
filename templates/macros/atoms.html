@@ -1,0 +1,184 @@
+{% macro render_markdown(content, class='') %}
+<div class="prose prose-invert max-w-none {{ class }}">
+    {{ content | markdown | safe }}
+</div>
+{% endmacro %}
+
+{% macro render_code(content, language='text', filename='', class='') %}
+<div class="relative group rounded-xl overflow-hidden bg-bg-secondary border border-card-border shadow-lg {{ class }}">
+    {% if filename %}
+    <div
+        class="px-4 py-2 bg-card-bg border-b border-card-border text-xs font-mono text-text-secondary flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></span>
+        <span class="ml-2">{{ filename }}</span>
+    </div>
+    {% endif %}
+    <pre
+        class="!m-0 !p-0 !bg-transparent"><code class="language-{{ language }} !p-6 block text-sm leading-relaxed font-mono">{{ content }}</code></pre>
+</div>
+{% endmacro %}
+
+{% macro render_image(src, alt='', class='object-cover w-full h-full') %}
+<div class="relative rounded-xl overflow-hidden w-full h-full shadow-lg border border-card-border group">
+    <img src="{{ src }}" alt="{{ alt }}" class="{{ class }} transition-transform duration-700 group-hover:scale-105">
+</div>
+{% endmacro %}
+
+{% macro render_stat(value, label, class='') %}
+<div
+    class="flex flex-col p-8 bg-card-bg border border-card-border rounded-xl backdrop-blur-glass shadow-lg hover:border-accent-primary/30 transition-colors {{ class }}">
+    <dt class="text-xs font-bold text-text-secondary uppercase tracking-widest mb-3 flex items-center gap-2">
+        <span class="w-1 h-1 rounded-full bg-accent-primary"></span>
+        {{ label }}
+    </dt>
+    <dd class="text-5xl font-bold text-accent-primary tracking-tight">{{ value }}</dd>
+</div>
+{% endmacro %}
+
+{% macro render_card(card, class='') %}
+<div class="glass-card p-6 {{ class }}">
+    <h3 class="text-xl font-bold text-text-primary mb-4">{{ card.title }}</h3>
+    {% set card_items = card.get('items', []) %}
+    {% if card_items %}
+    <ul class="space-y-2">
+        {% for item in card_items %}
+        <li class="text-text-secondary text-sm">{{ item | markdown | safe }}</li>
+        {% endfor %}
+    </ul>
+    {% elif card.text %}
+    <div class="prose prose-invert text-sm">{{ card.text | markdown | safe }}</div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro render_mermaid(code, class='') %}
+<div class="glass-card flex items-center justify-center p-8 {{ class }}">
+    <div class="mermaid w-full flex justify-center text-center">
+        {{ code }}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_process(steps, class='') %}
+<div class="flex gap-6 {{ class }}">
+    {% for step in steps %}
+    <div class="glass-card p-6 flex-1 relative overflow-hidden group hover:border-accent-primary/50 transition-colors">
+        <div
+            class="absolute top-0 right-0 p-4 opacity-10 font-bold text-6xl text-accent-primary group-hover:scale-110 transition-transform">
+            {{ loop.index }}
+        </div>
+        {% if step.header %}
+        <div class="text-xs font-bold text-accent-secondary uppercase tracking-widest mb-2">{{ step.header }}</div>
+        {% endif %}
+        <h3 class="text-xl font-bold text-text-primary mb-2">{{ step.title }}</h3>
+        <p class="text-text-secondary leading-relaxed text-sm">{{ step.text | default(step.description) }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro render_badges(badges, class='') %}
+<div class="mt-12 text-center {{ class }}">
+    {% if badges.title %}
+    <h4 class="text-sm font-bold text-text-secondary uppercase tracking-widest mb-4">{{ badges.title }}</h4>
+    {% endif %}
+    <div class="flex flex-wrap justify-center gap-3">
+        {% set badge_items = badges.get('items', []) %}
+        {% for item in badge_items %}
+        <span
+            class="px-4 py-2 bg-card-bg border border-card-border rounded-full text-sm text-text-primary hover:border-accent-primary/50 transition-colors">
+            {{ item }}
+        </span>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_chart(data, type='bar', labels=[], label='Data', class='') %}
+<div class="glass-card w-full h-full min-h-[400px] p-6 {{ class }}">
+    <canvas data-chart-type="{{ type }}" data-chart-labels='{{ labels | tojson }}' data-chart-data='{{ data | tojson }}'
+        data-chart-label='{{ label }}'></canvas>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if this specific canvas has been initialized
+            const canvases = document.querySelectorAll('canvas[data-chart-type]');
+            canvases.forEach(canvas => {
+                if (canvas.chart) return; // Already initialized
+
+                const ctx = canvas.getContext('2d');
+                const type = canvas.dataset.chartType;
+                const labels = JSON.parse(canvas.dataset.chartLabels || '[]');
+                const data = JSON.parse(canvas.dataset.chartData || '[]');
+                const label = canvas.dataset.chartLabel || 'Data';
+
+                canvas.chart = new Chart(ctx, {
+                    type: type,
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            backgroundColor: [
+                                'rgba(34, 197, 94, 0.7)',
+                                'rgba(13, 148, 136, 0.7)',
+                                'rgba(22, 163, 74, 0.7)',
+                                'rgba(2, 6, 23, 0.7)'
+                            ],
+                            borderColor: 'rgba(34, 197, 94, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: { color: '#94a3b8' }
+                            }
+                        },
+                        scales: {
+                            y: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#94a3b8' } },
+                            x: { grid: { color: 'rgba(255, 255, 255, 0.1)' }, ticks: { color: '#94a3b8' } }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</div>
+{% endmacro %}
+
+{% macro render_table(data, table_id, class='') %}
+<div class="glass-card overflow-hidden p-6 {{ class }}">
+    <table id="{{ table_id }}" class="w-full text-sm text-left text-text-secondary">
+        <thead class="text-xs uppercase bg-card-border/50 text-text-primary">
+            <tr>
+                {% for col in data.columns %}
+                <th class="px-6 py-3">{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data.rows %}
+            <tr class="border-b border-card-border hover:bg-card-border/20">
+                {% for cell in row %}
+                <td class="px-6 py-4">{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof simpleDatatables !== 'undefined') {
+                new simpleDatatables.DataTable("#{{ table_id }}", {
+                    searchable: true,
+                    fixedHeight: true,
+                });
+            }
+        });
+    </script>
+</div>
+{% endmacro %}

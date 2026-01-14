@@ -54,3 +54,83 @@ Traceback (most recent call last):
     return getattr(obj, attribute)
            ^^^^^^^^^^^^^^^^^^^^^^^
 jinja2.exceptions.UndefinedError: 'loop' is undefined
+
+--- Error during rendering ---
+Traceback (most recent call last):
+  File "C:\Users\gabri\APP\Studio\YAMLSLIDE\src\generator.py", line 142, in generate_presentation
+    output_html = template.render(
+                  ^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "templates\universal.html", line 57, in top-level template code
+    {{ atoms.render_card(card) }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\runtime.py", line 784, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "templates\macros\atoms.html", line 45, in template
+    {% for item in card.items %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'builtin_function_or_method' object is not iterable
+
+--- Error during rendering ---
+Traceback (most recent call last):
+  File "C:\Users\gabri\APP\Studio\YAMLSLIDE\src\generator.py", line 142, in generate_presentation
+    output_html = template.render(
+                  ^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "templates\universal.html", line 58, in top-level template code
+    {{ atoms.render_card(card) }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\runtime.py", line 784, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "templates\macros\atoms.html", line 45, in template
+    {% for item in card.items %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'builtin_function_or_method' object is not iterable
+
+--- Error during rendering ---
+Traceback (most recent call last):
+  File "C:\Users\gabri\APP\Studio\YAMLSLIDE\src\generator.py", line 142, in generate_presentation
+    output_html = template.render(
+                  ^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "templates\universal.html", line 58, in top-level template code
+    {{ atoms.render_card(card) }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\runtime.py", line 784, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "templates\macros\atoms.html", line 45, in template
+    {% for item in card['items'] %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'builtin_function_or_method' object is not iterable
+
+--- Error during rendering ---
+Traceback (most recent call last):
+  File "C:\Users\gabri\APP\Studio\YAMLSLIDE\src\generator.py", line 142, in generate_presentation
+    output_html = template.render(
+                  ^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "templates\universal.html", line 58, in top-level template code
+    {{ atoms.render_card(card) }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabri\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\runtime.py", line 784, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "templates\macros\atoms.html", line 45, in template
+    {% for item in card['items'] %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'builtin_function_or_method' object is not iterable

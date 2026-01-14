@@ -1,62 +1,62 @@
-# --- CONFIGURAZIONE GLOBALE: ULTRA-STRESS TEST & COLORI ---
+# --- CONFIGURAZIONE GLOBALE: STRESS TEST LIGHT MODE ---
 meta:
-  title: "YAMLSlide: Il Grande Stress Test Visivo"
+  title: "YAMLSlide: Light Mode Stress Test"
 
 theme:
-  # Palette "Cyber-Vibrant": Contrasti estremi per testare il motore CSS
-  bg_primary: "#020617"       # Sfondo quasi nero (Slate 950)
-  accent_primary: "#22d3ee"    # Cyan Neon (Cyan 400)
-  accent_secondary: "#f472b6"  # Rosa Neon (Pink 400)
-  accent_tertiary: "#a855f7"   # Viola Elettrico (Purple 500)
-  text_primary: "#f8fafc"      # Bianco Slate per massima leggibilità
-  text_secondary: "#94a3b8"    # Grigio azzurrato per gerarchia visiva
+  # Palette "Professional Light": Alta leggibilità su sfondo chiaro
+  bg_primary: "#ffffff"        # Bianco puro
+  accent_primary: "#0891b2"    # Teal Scuro (ex Cyan Neon) - Per contrasto su bianco
+  accent_secondary: "#db2777"  # Pink Scuro (ex Rosa Neon)
+  accent_tertiary: "#7c3aed"   # Viola Intenso (ex Viola Elettrico)
+  text_primary: "#0f172a"      # Slate 900 (Quasi nero) per il testo principale
+  text_secondary: "#475569"    # Slate 600 per sottotitoli e gerarchia
 
-  # Test del sistema multi-livello (Spec: enhanced-background)
+  # Sfondo sottile e professionale
   background:
     type: "abstract"
     base_color: "bg_primary"
     radial_layers:
       - at: "0% 0%"
         color: "accent_primary"
-        opacity: 0.25          # Test trasparenza angolare
-        size: "70%"
+        opacity: 0.05          # Opacità molto bassa per non disturbare la lettura
+        size: "80%"
       - at: "100% 100%"
         color: "accent_secondary"
-        opacity: 0.25
-        size: "70%"
+        opacity: 0.05
+        size: "80%"
       - at: "50% 50%"
         color: "accent_tertiary"
-        opacity: 0.15          # Test sovrapposizione centrale
-        size: "50%"
+        opacity: 0.03
+        size: "60%"
     linear_gradient:
       angle: "180deg"
       stops:
-        - color: "#020617"
+        - color: "#ffffff"
           pos: "0%"
-        - color: "#0f172a"
+        - color: "#f1f5f9"     # Slate 100 (sfumatura impercettibile verso il basso)
           pos: "100%"
 
 # --- SLIDE DI TEST ---
 slides:
   # 1. HERO: Test Entità e Unicode
   - type: "hero"
-    title: "Stress Test: <span style='color: #22d3ee;'>Estremo</span>"
-    subtitle: "Cosa vedere: Verifica il gradiente radiale negli angoli e la resa del testo Cyan."
+    title: "Stress Test: <span style='color: #0891b2;'>Light Edition</span>"
+    subtitle: "Cosa vedere: Verifica il contrasto del testo scuro su sfondo chiaro e la pulizia dei gradienti."
     meta_info:
       label: "Versione"
-      value: "9.0.MAX"
-      badge: "ULTRA-VIBRANT"
+      value: "9.0.LIGHT"
+      badge: "HIGH-CONTRAST"
 
-  # 2. GRID: Test Staggering e Markdown (Spec: animation-system, markdown-support)
+  # 2. GRID: Test Staggering e Markdown
   - type: "grid"
     layout: "3-col"
     title: "Animazioni e Markdown"
-    lead: "COSA VEDERE: Le card devono apparire una dopo l'altra dal basso (staggering). Il testo deve essere formattato correttamente."
+    lead: "COSA VEDERE: Le card devono avere ombreggiature sottili per staccarsi dallo sfondo bianco."
     cards:
       - title: "Stile Testo"
         items:
           - "**Grassetto**, *Corsivo*, ~~Barrato~~"
-          - "[Link Cyan](https://google.com)"
+          - "[Link Teal](https://google.com)"
       - title: "Liste & Simboli"
         items:
           - "Entità: &trade; &copy; &reg;"
@@ -66,13 +66,13 @@ slides:
           - "`const test = true;`"
           - "Path: `/usr/local/bin`"
 
-  # 3. CODE: Test Syntax Highlighting (Spec: new-slide-types)
+  # 3. CODE: Test Syntax Highlighting
   - type: "code"
     title: "Highlighting & Overflow"
     language: "python"
     code: |
-      # COSA VEDERE: I colori dei commenti devono differire dai comandi. 
-      # Una linea molto lunga deve attivare lo scroll o il wrapping senza rompere il layout.
+      # COSA VEDERE: Su tema chiaro, il blocco codice dovrebbe avere 
+      # uno sfondo leggermente grigio o un bordo per distinguerlo.
       def stress_test_colors(palette):
           for color in palette:
               print(f"Testing hex code: {color} with a very long string that might overflow the container if not handled properly by the CSS styles...")
@@ -81,9 +81,9 @@ slides:
   # 4. CHART: Test Palette Automatica
   - type: "chart"
     title: "Resa dei Grafici"
-    lead: "COSA VEDERE: Le barre devono avere colori distinti che risaltano sullo sfondo scuro. Verifica i margini."
+    lead: "COSA VEDERE: I colori delle barre non devono essere 'sparati', ma leggibili."
     chart_type: "bar"
-    labels: ["Neon 1", "Neon 2", "Neon 3", "Neon 4"]
+    labels: ["Metric 1", "Metric 2", "Metric 3", "Metric 4"]
     data: [450, 320, 580, 210]
     dataset_label: "Valori di Test"
 
@@ -95,12 +95,12 @@ slides:
     content: |
       ### COSA VEDERE:
       * L'immagine deve riempire la metà destra della slide.
-      * Il testo a sinistra deve avere un padding adeguato.
-      * La citazione qui sotto deve avere uno stile distinto:
+      * Il testo scuro a sinistra deve essere nitido.
+      * La citazione qui sotto deve avere uno sfondo grigio chiaro o una barra laterale:
       
-      > "Se il design non stressa il codice, non è abbastanza audace."
+      > "La semplicità è l'ultima sofisticazione."
 
-  # 6. MERMAID: Test Diagrammi (Spec: diagrams-as-code)
+  # 6. MERMAID: Test Diagrammi
   - type: "mermaid"
     title: "Diagramma Mermaid"
     code: |
@@ -108,15 +108,15 @@ slides:
         A[Input YAML] --> B{Processore}
         B -->|Successo| C[HTML Finale]
         B -->|Errore| D[Log Console]
-        style A fill:#22d3ee,stroke:#fff
-        style C fill:#f472b6,stroke:#fff
-        %% COSA VEDERE: Il diagramma deve essere centrato e i nodi colorati via CSS Mermaid.
+        style A fill:#0891b2,stroke:#fff,color:#fff
+        style C fill:#db2777,stroke:#fff,color:#fff
+        %% COSA VEDERE: Colori aggiornati per contrasto su bianco.
 
-  # 7. MATH: Test KaTeX (Spec: math-support)
+  # 7. MATH: Test KaTeX
   - type: "grid"
     layout: "2-col"
     title: "Formule Matematiche"
-    lead: "COSA VEDERE: Le formule devono essere renderizzate in alta qualità, non come testo semplice."
+    lead: "COSA VEDERE: Le formule devono essere nere/scure, ben definite."
     cards:
       - title: "Fisica"
         text: |
@@ -125,18 +125,18 @@ slides:
         text: |
           $$ P(A|B) = \frac{P(B|A)P(A)}{P(B)} $$
 
-  # 8. TABLE: Test Iniezione Dati (Spec: data-tables)
+  # 8. TABLE: Test Iniezione Dati
   - type: "table"
     title: "Dati da CSV Esterno"
-    lead: "COSA VEDERE: Una tabella generata dai dati di 'dati_vendite.csv'. Verifica che i bordi siano visibili."
+    lead: "COSA VEDERE: Una tabella pulita, possibilmente con righe zebrate (grigio chiaro/bianco)."
     file: "dati_vendite.csv"
 
-  # 9. PROCESS: Test Footer e Badge (Spec: utility-components)
+  # 9. PROCESS: Test Footer e Badge
   - type: "process"
     title: "Stato della Pipeline"
     steps:
       - header: "Fase A"
-        title: "Cyan Step"
+        title: "Teal Step"
         text: "Verifica l'accento primario."
       - header: "Fase B"
         title: "Pink Step"
@@ -147,3 +147,186 @@ slides:
     footer_badges:
       title: "Tecnologie Testate"
       items: ["YAML", "Jinja2", "Tailwind", "KaTeX", "Mermaid", "Chart.js"]
+
+  # ========================================================================
+  # NUOVE SLIDE - COMPREHENSIVE STRESS TEST
+  # ========================================================================
+
+  # 10. GRID 2-COL: Test Layout Alternativo
+  - type: "grid"
+    layout: "2-col"
+    title: "Grid 2 Colonne: Mix Contenuti"
+    lead: "COSA VEDERE: Due colonne bilanciate su sfondo chiaro."
+    cards:
+      - title: "Card Testuale"
+        text: |
+          Questa card contiene **solo testo** con formattazione Markdown.
+          
+          Supporta paragrafi multipli e `codice inline`.
+      - title: "Card con Lista"
+        items:
+          - "Elemento con **grassetto**"
+          - "Elemento con *corsivo*"
+          - "Elemento con `code`"
+          - "Elemento con [link](https://example.com)"
+
+  # 11. CHART LINE: Andamento Temporale
+  - type: "chart"
+    title: "Grafico a Linee: Trend"
+    lead: "COSA VEDERE: Linea di contrasto forte (es. blu o viola) su griglia grigia."
+    chart_type: "line"
+    labels: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu"]
+    data: [65, 59, 80, 81, 56, 95]
+    dataset_label: "Progresso Mensile"
+
+  # 12. CHART PIE: Torta
+  - type: "chart"
+    title: "Grafico a Torta: Distribuzione"
+    lead: "COSA VEDERE: I segmenti devono avere bordi bianchi per separarli."
+    chart_type: "pie"
+    labels: ["Frontend", "Backend", "DevOps", "Design"]
+    data: [40, 30, 20, 10]
+    dataset_label: "Team Allocation"
+
+  # 13. CHART DOUGHNUT: Ciambella
+  - type: "chart"
+    title: "Grafico Doughnut"
+    lead: "COSA VEDERE: Pulizia visiva e legenda leggibile."
+    chart_type: "doughnut"
+    labels: ["React", "Vue", "Angular", "Svelte"]
+    data: [50, 25, 15, 10]
+    dataset_label: "Framework Usage"
+
+  # 14. SPLIT TEXT-RIGHT: Layout Invertito
+  - type: "split"
+    title: "Split: Testo a Destra"
+    layout: "text-right"
+    image_url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"
+    content: |
+      ### COSA VEDERE:
+      * L'immagine deve essere a **sinistra**
+      * Il testo deve essere a **destra**
+      
+      > "Il codice è poesia in movimento."
+
+  # 15. TABLE INLINE: Dati Diretti
+  - type: "table"
+    title: "Tabella Inline: Dati YAML"
+    lead: "COSA VEDERE: Testo nero su sfondo bianco/grigio."
+    columns: ["Feature", "Status", "Priority", "Owner"]
+    rows:
+      - ["Dark Theme", "✅ Done", "P0", "Team A"]
+      - ["Animations", "✅ Done", "P1", "Team B"]
+      - ["Export PDF", "🔄 WIP", "P2", "Team A"]
+      - ["Live Reload", "❌ TODO", "P3", "Team C"]
+      - ["Mobile View", "🔄 WIP", "P1", "Team B"]
+
+  # 16. MERMAID SEQUENCE: Diagramma di Sequenza
+  - type: "mermaid"
+    title: "Sequence Diagram: Flusso Auth"
+    code: |
+      sequenceDiagram
+        participant U as User
+        participant A as App
+        participant S as Server
+        U->>A: Click Login
+        A->>S: POST /auth
+        S-->>A: JWT Token
+        A-->>U: Welcome!
+
+  # 17. MERMAID PIE: Grafico Torta Mermaid
+  - type: "mermaid"
+    title: "Mermaid Pie Chart"
+    code: |
+      pie showData
+        title Resource Allocation
+        "CPU" : 45
+        "Memory" : 30
+        "Storage" : 15
+        "Network" : 10
+
+  # 18. CODE JAVASCRIPT: Linguaggio Diverso
+  - type: "code"
+    title: "JavaScript: Async/Await"
+    language: "javascript"
+    code: |
+      // COSA VEDERE: Sintassi JS leggibile (non colori troppo chiari)
+      async function fetchData(url) {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          console.log('Fetched:', data);
+          return data;
+        } catch (error) {
+          console.error('Failed:', error);
+          throw error;
+        }
+      }
+
+  # 19. CODE RUST: Altro Linguaggio
+  - type: "code"
+    title: "Rust: Memory Safety 🦀"
+    language: "rust"
+    code: |
+      // COSA VEDERE: Sintassi Rust
+      fn main() {
+          let greeting = String::from("Hello, YAMLSlide! 🦀");
+          println!("{}", greeting);
+          
+          let numbers: Vec<i32> = (1..=10).collect();
+          let sum: i32 = numbers.iter().sum();
+          println!("Sum: {}", sum);
+      }
+
+  # 20. HERO LONG TITLE: Test Overflow
+  - type: "hero"
+    title: "Stress Test: <span style='color: #db2777;'>Titolo Estremamente Lungo</span> per Verificare l'Overflow"
+    subtitle: "Questo sottotitolo è intenzionalmente verboso per testare come il layout gestisce contenuti testuali molto estesi che potrebbero superare la larghezza normale della viewport."
+    meta_info:
+      label: "Stress Level"
+      value: "MAXIMUM"
+      badge: "EDGE-CASE"
+
+  # 21. PROCESS 5 STEPS: Stress Layout Orizzontale
+  - type: "process"
+    title: "Pipeline a 5 Fasi"
+    steps:
+      - header: "Step 1"
+        title: "Ideazione"
+        text: "Brainstorming."
+      - header: "Step 2"
+        title: "Design"
+        text: "Mockup."
+      - header: "Step 3"
+        title: "Sviluppo"
+        text: "Coding."
+      - header: "Step 4"
+        title: "Testing"
+        text: "QA."
+      - header: "Step 5"
+        title: "Deploy"
+        text: "Prod."
+    footer_badges:
+      title: "Full Stack"
+      items: ["Python", "Jinja2", "HTML5", "CSS3", "JS", "Chart.js"]
+
+  # 22. GRID MARKDOWN EXTREME: Tutte le Formattazioni
+  - type: "grid"
+    layout: "2-col"
+    title: "Markdown Stress Test"
+    lead: "COSA VEDERE: Tutte le formattazioni devono essere nitide e scure."
+    cards:
+      - title: "Formattazione Completa"
+        text: |
+          **Bold** e *italic* e ~~strikethrough~~
+          
+          `inline code` e [link](https://example.com)
+          
+          > Citazione con stile che deve essere formattata in modo distinto dal resto del testo.
+      - title: "Simboli & Unicode"
+        items:
+          - "Emoji: 🚀 🎨 ⚡ 🔥 💎 🌈 🦄 🎯"
+          - "Entità: &amp; &lt; &gt; &copy; &reg; &trade;"
+          - "Unicode: ñ ü ö ä ß æ ø å €"
+          - "Frecce: → ← ↑ ↓ ↔ ⇒ ⇐"
+          - "Math: ∑ ∏ ∫ ∂ ∇ ∆ Ω π √"

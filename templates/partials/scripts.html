@@ -5,9 +5,18 @@
 
     function updateSlide(newIndex) {
         if (newIndex < 0 || newIndex >= slides.length) return;
-        slides[currentSlideIndex].classList.remove('active');
+
+        // Hide current slide
+        const current = slides[currentSlideIndex];
+        current.classList.remove('active', 'opacity-100', 'z-10');
+        current.classList.add('opacity-0', 'z-0');
+
         currentSlideIndex = newIndex;
-        slides[currentSlideIndex].classList.add('active');
+
+        // Show new slide
+        const next = slides[currentSlideIndex];
+        next.classList.remove('opacity-0', 'z-0');
+        next.classList.add('active', 'opacity-100', 'z-10');
     }
 
     document.addEventListener('keydown', (e) => {
